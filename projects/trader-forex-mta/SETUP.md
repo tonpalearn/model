@@ -46,9 +46,15 @@ DEV_NOTES.md
 - Bias Lookback H1: `20`
 - Swing Strength: `2`
 - ATR Period M15: `14`
-- Break Buffer ATR: `0.15`
-- Retest Zone ATR: `0.20`
-- Retest Timeout Bars: `4`
+- Enable ATR Filter: `false`
+- ATR Filter Mode: `RawPrice`
+- Min ATR M15: `0.0`
+- Max ATR M15: `60.0`
+- Bypass ATR In Diagnostic: `true`
+- Bypass ATR In Probe: `true`
+- Break Buffer ATR: `0.10`
+- Retest Zone ATR: `0.30`
+- Retest Timeout Bars: `6`
 - Risk %: `0.25`
 - Max Trades / Day: `2`
 - Max Losses / Day: `2`
@@ -79,6 +85,17 @@ DEV_NOTES.md
 ### 3) Stop distance practicality
 ค่าตั้งต้น `MinStopDistance` และ `MaxStopDistance` เป็นค่าเชิงตรรกะเริ่มต้น ไม่ใช่ค่าที่ validate แล้วว่าดีที่สุดกับทุก broker
 
+รอบ 6 เพิ่ม log และพารามิเตอร์สำหรับ stop-distance โดยตรง:
+- `Allow Stop Relax In Probe`
+- `Allow Stop Relax In Diagnostic`
+- `Relaxed Stop Max Multiplier`
+- `Relaxed Stop Min Multiplier`
+
+ถ้าต้องการ debug downstream execution โดยไม่ผ่อน normal mode:
+- ใช้ `Probe Mode = true`
+- เปิด `Allow Stop Relax In Probe = true`
+- ดู log `STOP DISTANCE LIMITS`, `STOP CHECK`, `SIZING`, `ORDER REQUEST`
+
 ---
 
 ## วิธีทดสอบเบื้องต้น
@@ -101,3 +118,45 @@ DEV_NOTES.md
 - ยังไม่ได้ทำ partial close / trailing stop
 - ยังไม่ได้ยืนยัน compile/runtime quirks กับ cTrader version เฉพาะเครื่อง
 - ห้ามตีความว่า strategy นี้ “ทำกำไรได้แน่นอน”
+
+
+## ATR filter (รอบ 4)
+
+รอบ 4 ปรับ ATR filter สำหรับ XAUUSD โดยตรง เพื่อไม่ให้เกิดอาการบอทถูกบล็อกทั้งระบบเพราะใช้ค่า ATR raw กับ threshold ที่แคบเกินจริง
+
+### พารามิเตอร์ใหม่
+- `Enable ATR Filter`
+  - `false` = ปิด ATR gate ทั้งหมด
+  - ใช้ค่านี้ตอนต้องการดูว่า pipeline ถัดจาก ATR ทำงานหรือไม่
+- `ATR Filter Mode`
+  - `RawPrice` = ใช้ ATR เป็นหน่วยราคาโดยตรง
+  - `Pips` = แปลง ATR เป็น pip ตาม `Symbol.PipSize`
+  - `PercentOfPrice` = แปลง ATR เป็น % ของราคาปิดแท่ง
+- `Bypass ATR In Diagnostic`
+  - ถ้า `true` และเปิด `Diagnostic Mode` อยู่ ATR gate จะไม่บล็อก order flow แต่จะยัง log ค่า ATR ให้เห็น
+- `Bypass ATR In Probe`
+  - ถ้า `true` และเปิด `Probe Mode` อยู่ ATR gate จะไม่บล็อก order flow เช่นกัน
+
+### ค่าเริ่มต้นที่แนะนำ
+#### โหมดตรวจ flow downstream
+- `Enable ATR Filter = false`
+- `Diagnostic Mode = true`
+- `Probe Mode = false` หรือ `true` ตามที่ต้องการ
+
+#### โหมดเปิด ATR แบบ realistic สำหรับ XAUUSD
+- `Enable ATR Filter = true`
+- `ATR Filter Mode = RawPrice`
+- `Min ATR M15 = 0.0`
+- `Max ATR M15 = 60.0`
+- ถ้าต้องการให้ ATR มีผลจริงในรอบทดสอบนี้ ให้ตั้ง
+  - `Bypass ATR In Diagnostic = false`
+  - `Bypass ATR In Probe = false`
+
+### วิธีอ่าน log
+จะมี log ลักษณะนี้:
+- `ATR FILTER | enabled=... mode=... min=... max=... unit=... compare=...`
+- `GATE ATR PASS | ... raw=... compare=... unit=... mode=... threshold=[min,max] ...`
+- ถ้า bypass จะเห็น `filter=bypassed context=...`
+- ถ้าปิด filter จะเห็น `filter=disabled`
+
+ข้อสำคัญ: รอบนี้เป้าหมายคือให้บอทผ่าน ATR gate เพื่อเปิดทางไปดู breakout / retest / confirm / sizing ต่อ ไม่ใช่สรุปผลกำไร

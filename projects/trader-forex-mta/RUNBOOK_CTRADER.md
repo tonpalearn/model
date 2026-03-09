@@ -37,7 +37,11 @@
 - ARMED
 - RETEST
 - INVALIDATE
+- STOP DISTANCE LIMITS
+- STOP CHECK
+- GATE SIZING PASS / REJECT
 - SIZING
+- ORDER REQUEST
 - ENTRY
 - BE
 - TIME EXIT
@@ -52,6 +56,9 @@
 6. bias เป็น neutral ตลอดหรือไม่
 7. breakout ถูก arm แต่ invalidate ก่อนหรือไม่
 8. retest timeout สั้นเกินหรือไม่
+9. `STOP CHECK` reject เพราะ band strict แคบเกินจริงหรือไม่
+10. `SIZING` log แสดง `pipValuePerUnit`, `rawVol`, `normVol` สมเหตุผลหรือไม่
+11. ถ้า `ORDER REQUEST` โผล่แล้ว แต่ไม่เข้า order ให้ดู `GATE ORDER_SUBMIT REJECT`
 
 ## Step 6: สิ่งที่ควรส่งกลับมาให้วิเคราะห์
 - screenshot หน้า parameters
