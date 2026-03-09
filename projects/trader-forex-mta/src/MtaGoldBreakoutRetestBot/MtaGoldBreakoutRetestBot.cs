@@ -113,6 +113,9 @@ namespace cAlgo.Robots
         [Parameter("Risk %", DefaultValue = 0.25, MinValue = 0.01, MaxValue = 5.0, Step = 0.01)]
         public double RiskPercent { get; set; }
 
+        [Parameter("Risk Calibration Warning Mult", DefaultValue = 1.20, MinValue = 1.0, MaxValue = 10.0, Step = 0.05)]
+        public double RiskCalibrationWarningMultiple { get; set; }
+
         [Parameter("Max Trades / Day", DefaultValue = 2, MinValue = 1, MaxValue = 10)]
         public int MaxTradesPerDay { get; set; }
 
@@ -211,14 +214,19 @@ namespace cAlgo.Robots
                 GetAtrFilterCompareLabel(),
                 BypassAtrInDiagnostic,
                 BypassAtrInProbe);
-            Print("SYMBOL SPEC | pipSize={0} pipValue={1} tickSize={2} lotSize={3} volMin={4} volMax={5} volStep={6}",
+            Print("SYMBOL SPEC | pipSize={0} pipValue={1} tickValue={2} tickSize={3} lotSize={4} volMin={5} volMax={6} volStep={7}",
                 Symbol.PipSize,
                 Symbol.PipValue,
+                Symbol.TickValue,
                 Symbol.TickSize,
                 Symbol.LotSize,
                 Symbol.VolumeInUnitsMin,
                 Symbol.VolumeInUnitsMax,
                 Symbol.VolumeInUnitsStep);
+            Print("RISK CALIBRATION | riskPct={0:F2} pipValueMode=DirectSymbolPipValue warningMult={1:F2} minVolume={2:F2}",
+                RiskPercent,
+                RiskCalibrationWarningMultiple,
+                Symbol.VolumeInUnitsMin);
             Print("DIAG PARAMS | breakBufferAtr={0:F2}->{1:F2} retestZoneAtr={2:F2}->{3:F2} confirmMode={4}->{5} confirmBody={6:F2}->{7:F2} confirmClosePct={8:F2}->{9:F2} probeBody={10:F2} probeClosePct={11:F2} maxSpread={12:F2}->{13:F2} maxBreakoutAtr={14:F2}->{15:F2}",
                 BreakBufferAtr,
                 GetBreakBufferAtrEffective(),
@@ -598,39 +606,30 @@ namespace cAlgo.Robots
             double tpPips = stopPips * TakeProfitR;
             double riskAmount = _startOfDayEquity * (RiskPercent / 100.0);
             double pipValuePerUnit = GetPipValuePerUnit();
-            double rawVolumeInUnits = CalculateVolumeInUnits(stopPips, riskAmount, pipValuePerUnit);
-            double volumeInUnits = Symbol.NormalizeVolumeInUnits(rawVolumeInUnits, RoundingMode.Down);
+            RiskCalibrationResult riskPlan = EvaluateRiskCalibration(stopCheck, tpPips, riskAmount, pipValuePerUnit);
 
-            LogSizing(stopCheck, tpPips, riskAmount, pipValuePerUnit, rawVolumeInUnits, volumeInUnits);
+            LogSizing(stopCheck, tpPips, riskPlan);
 
-            if (Symbol.PipSize <= 0 || Symbol.TickSize <= 0 || stopPips <= 0 || tpPips <= 0 || pipValuePerUnit <= 0 || double.IsNaN(rawVolumeInUnits) || double.IsInfinity(rawVolumeInUnits) || rawVolumeInUnits <= 0)
+            if (!riskPlan.IsSizingMathValid)
             {
                 IncrementStat("entry.reject.sizingMath");
                 RegisterRangeAttempt(_activeSetup.RangeKey);
-                LogGateReject("SIZING", "Sizing math invalid", lastClosedIndex, string.Format("pipSize={0} tickSize={1} stopPips={2:F2} tpPips={3:F2} pipValuePerUnit={4} rawVolume={5:F2}", Symbol.PipSize, Symbol.TickSize, stopPips, tpPips, pipValuePerUnit, rawVolumeInUnits));
+                LogGateReject("SIZING", "Sizing math invalid", lastClosedIndex, riskPlan.RejectDetail);
                 InvalidateSetup("Sizing math invalid");
                 return;
             }
 
-            if (volumeInUnits < Symbol.VolumeInUnitsMin)
+            if (!riskPlan.CanTrade)
             {
-                IncrementStat("entry.reject.volumeBelowMin");
+                IncrementStat(riskPlan.RejectStatKey);
                 RegisterRangeAttempt(_activeSetup.RangeKey);
-                LogGateReject("SIZING", "Calculated volume below symbol minimum", lastClosedIndex, string.Format("normalizedVolume={0:F2} min={1:F2}", volumeInUnits, Symbol.VolumeInUnitsMin));
-                InvalidateSetup("Calculated volume below symbol minimum");
+                LogGateReject("SIZING", riskPlan.RejectReason, lastClosedIndex, riskPlan.RejectDetail);
+                InvalidateSetup(riskPlan.RejectReason);
                 return;
             }
 
-            if (volumeInUnits > Symbol.VolumeInUnitsMax)
-            {
-                IncrementStat("entry.reject.volumeAboveMax");
-                RegisterRangeAttempt(_activeSetup.RangeKey);
-                LogGateReject("SIZING", "Calculated volume above symbol maximum", lastClosedIndex, string.Format("normalizedVolume={0:F2} max={1:F2}", volumeInUnits, Symbol.VolumeInUnitsMax));
-                InvalidateSetup("Calculated volume above symbol maximum");
-                return;
-            }
-
-            LogOrderRequest(lastClosedIndex, stopCheck, tpPips, riskAmount, volumeInUnits);
+            double volumeInUnits = riskPlan.NormalizedVolumeInUnits;
+            LogOrderRequest(lastClosedIndex, stopCheck, tpPips, riskPlan);
 
             TradeResult result = ExecuteMarketOrder(_activeSetup.Direction, SymbolName, volumeInUnits, InstanceLabel, stopPips, tpPips);
             if (!result.IsSuccessful || result.Position == null)
@@ -653,17 +652,27 @@ namespace cAlgo.Robots
                 EntryBarIndex = Bars.Count - 1,
                 BreakEvenMoved = false,
                 SetupId = _activeSetup.Id,
-                RangeKey = _activeSetup.RangeKey
+                RangeKey = _activeSetup.RangeKey,
+                VolumeInUnits = volumeInUnits,
+                TargetRiskAmount = riskPlan.RiskAmount,
+                ExpectedLossAtStop = riskPlan.EstimatedLossNormalized,
+                EstimatedLossAtMinVolume = riskPlan.EstimatedLossAtMinVolume,
+                ExpectedLossAtRawVolume = riskPlan.EstimatedLossRaw,
+                StopDistancePips = stopPips,
+                PipValuePerUnit = riskPlan.PipValuePerUnit,
+                UsedMinVolumeConstraint = riskPlan.RawVolumeBelowMin
             };
 
             _tradesToday++;
             LogGatePass("ORDER_SUBMIT", lastClosedIndex, string.Format("positionId={0} volume={1:F2}", result.Position.Id, volumeInUnits));
-            Print("ENTRY {0} #{1} | volume={2} stopPips={3:F1} tpPips={4:F1} entry={5:F2} sl={6:F2}",
+            Print("ENTRY {0} #{1} | volume={2} stopPips={3:F1} tpPips={4:F1} targetRisk={5:F2} expectedStopLoss={6:F2} entry={7:F2} sl={8:F2}",
                 _activeSetup.Direction,
                 _activeSetup.Id,
                 volumeInUnits,
                 stopPips,
                 tpPips,
+                riskPlan.RiskAmount,
+                riskPlan.EstimatedLossNormalized,
                 result.Position.EntryPrice,
                 result.Position.StopLoss);
             _activeSetup.State = SetupState.EntryFilled;
@@ -831,15 +840,130 @@ namespace cAlgo.Robots
                 return 0;
 
             double volume = riskAmount / (stopLossPips * pipValuePerUnit);
-            if (double.IsNaN(volume) || double.IsInfinity(volume) || volume <= 0)
+            if (!IsFinitePositive(volume))
                 return 0;
 
             return volume;
         }
 
+        private RiskCalibrationResult EvaluateRiskCalibration(StopDistanceCheck stopCheck, double tpPips, double riskAmount, double pipValuePerUnit)
+        {
+            double rawVolumeInUnits = CalculateVolumeInUnits(stopCheck.StopDistancePips, riskAmount, pipValuePerUnit);
+            double normalizedVolumeInUnits = rawVolumeInUnits > 0
+                ? Symbol.NormalizeVolumeInUnits(rawVolumeInUnits, RoundingMode.Down)
+                : 0;
+            double minVolumeInUnits = Symbol.VolumeInUnitsMin;
+            double estimatedLossRaw = EstimateLossAtStop(stopCheck.StopDistancePips, rawVolumeInUnits, pipValuePerUnit);
+            double estimatedLossNormalized = EstimateLossAtStop(stopCheck.StopDistancePips, normalizedVolumeInUnits, pipValuePerUnit);
+            double estimatedLossAtMinVolume = EstimateLossAtStop(stopCheck.StopDistancePips, minVolumeInUnits, pipValuePerUnit);
+            double normalizedRiskMultiple = riskAmount > 0 ? estimatedLossNormalized / riskAmount : 0;
+            double minVolumeRiskMultiple = riskAmount > 0 ? estimatedLossAtMinVolume / riskAmount : 0;
+            bool sizingMathValid = Symbol.PipSize > 0 && Symbol.TickSize > 0 && stopCheck.StopDistancePips > 0 && tpPips > 0 && pipValuePerUnit > 0 && IsFinitePositive(rawVolumeInUnits);
+
+            var result = new RiskCalibrationResult
+            {
+                RiskAmount = riskAmount,
+                PipValuePerUnit = pipValuePerUnit,
+                RawVolumeInUnits = rawVolumeInUnits,
+                NormalizedVolumeInUnits = normalizedVolumeInUnits,
+                MinVolumeInUnits = minVolumeInUnits,
+                EstimatedLossRaw = estimatedLossRaw,
+                EstimatedLossNormalized = estimatedLossNormalized,
+                EstimatedLossAtMinVolume = estimatedLossAtMinVolume,
+                NormalizedRiskMultiple = normalizedRiskMultiple,
+                MinVolumeRiskMultiple = minVolumeRiskMultiple,
+                NormalizedRiskWarning = riskAmount > 0 && estimatedLossNormalized >= riskAmount * RiskCalibrationWarningMultiple,
+                MinVolumeRiskWarning = riskAmount > 0 && estimatedLossAtMinVolume >= riskAmount * RiskCalibrationWarningMultiple,
+                IsSizingMathValid = sizingMathValid,
+                CanTrade = sizingMathValid,
+                RejectStatKey = "entry.reject.sizingMath",
+                RejectReason = "Sizing math invalid",
+                RejectDetail = string.Format("pipSize={0} tickSize={1} stopPips={2:F2} tpPips={3:F2} pipValuePerUnit={4} rawVolume={5:F4}", Symbol.PipSize, Symbol.TickSize, stopCheck.StopDistancePips, tpPips, pipValuePerUnit, rawVolumeInUnits)
+            };
+
+            if (!sizingMathValid)
+                return result;
+
+            if (rawVolumeInUnits < minVolumeInUnits)
+            {
+                result.CanTrade = false;
+                result.RejectStatKey = "entry.reject.volumeBelowMin";
+                result.RejectReason = "Broker min volume exceeds target risk";
+                result.RejectDetail = string.Format("targetRisk={0:F2} rawVol={1:F4} normVol={2:F2} minVol={3:F2} rawLoss={4:F2} normLoss={5:F2} minVolLoss={6:F2} minRiskMult={7:F2} pipValuePerUnit={8} stopPips={9:F2}",
+                    riskAmount,
+                    rawVolumeInUnits,
+                    normalizedVolumeInUnits,
+                    minVolumeInUnits,
+                    estimatedLossRaw,
+                    estimatedLossNormalized,
+                    estimatedLossAtMinVolume,
+                    minVolumeRiskMultiple,
+                    pipValuePerUnit,
+                    stopCheck.StopDistancePips);
+                return result;
+            }
+
+            if (normalizedVolumeInUnits < minVolumeInUnits)
+            {
+                result.CanTrade = false;
+                result.RejectStatKey = "entry.reject.volumeBelowMin";
+                result.RejectReason = "Normalized volume dropped below broker minimum";
+                result.RejectDetail = string.Format("targetRisk={0:F2} rawVol={1:F4} normVol={2:F2} minVol={3:F2} rawLoss={4:F2} normLoss={5:F2} stopPips={6:F2}",
+                    riskAmount,
+                    rawVolumeInUnits,
+                    normalizedVolumeInUnits,
+                    minVolumeInUnits,
+                    estimatedLossRaw,
+                    estimatedLossNormalized,
+                    stopCheck.StopDistancePips);
+                return result;
+            }
+
+            if (normalizedVolumeInUnits > Symbol.VolumeInUnitsMax)
+            {
+                result.CanTrade = false;
+                result.RejectStatKey = "entry.reject.volumeAboveMax";
+                result.RejectReason = "Calculated volume above symbol maximum";
+                result.RejectDetail = string.Format("targetRisk={0:F2} rawVol={1:F4} normVol={2:F2} maxVol={3:F2} rawLoss={4:F2} normLoss={5:F2} stopPips={6:F2}",
+                    riskAmount,
+                    rawVolumeInUnits,
+                    normalizedVolumeInUnits,
+                    Symbol.VolumeInUnitsMax,
+                    estimatedLossRaw,
+                    estimatedLossNormalized,
+                    stopCheck.StopDistancePips);
+                return result;
+            }
+
+            result.CanTrade = true;
+            result.RejectStatKey = null;
+            result.RejectReason = null;
+            result.RejectDetail = null;
+            return result;
+        }
+
+        private double EstimateLossAtStop(double stopLossPips, double volumeInUnits, double pipValuePerUnit)
+        {
+            if (stopLossPips <= 0 || volumeInUnits <= 0 || pipValuePerUnit <= 0)
+                return 0;
+
+            double estimatedLoss = stopLossPips * pipValuePerUnit * volumeInUnits;
+            return IsFinite(estimatedLoss) ? estimatedLoss : 0;
+        }
+
         private double GetPipValuePerUnit()
         {
-            return Symbol.LotSize > 0 ? Symbol.PipValue / Symbol.LotSize : 0;
+            return Symbol.PipValue;
+        }
+
+        private bool IsFinite(double value)
+        {
+            return !double.IsNaN(value) && !double.IsInfinity(value);
+        }
+
+        private bool IsFinitePositive(double value)
+        {
+            return IsFinite(value) && value > 0;
         }
 
         private bool CanOpenNewTrade(out string reason)
@@ -1063,6 +1187,7 @@ namespace cAlgo.Robots
 
             double net = args.Position.NetProfit;
             string rangeKey = _activeTrade != null && _activeTrade.PositionId == args.Position.Id ? _activeTrade.RangeKey : _activeSetup != null ? _activeSetup.RangeKey : null;
+            PositionSnapshot closedTrade = _activeTrade != null && _activeTrade.PositionId == args.Position.Id ? _activeTrade : null;
 
             _closedNetToday += net;
             if (net < 0)
@@ -1079,6 +1204,7 @@ namespace cAlgo.Robots
             RegisterRangeAttempt(rangeKey);
             _activeSetup = null;
             Print("Position closed #{0}, net={1:F2}, todayNet={2:F2}, lossesToday={3}", args.Position.Id, net, _closedNetToday, _lossesToday);
+            LogRealizedVsPlannedRisk(args.Position, closedTrade, net);
             PrintStatsSummary("POST-TRADE STATS");
         }
 
@@ -1098,6 +1224,33 @@ namespace cAlgo.Robots
                 _activeTrade.InitialStopLoss = position.StopLoss.Value;
         }
 
+        private void LogRealizedVsPlannedRisk(Position position, PositionSnapshot closedTrade, double net)
+        {
+            if (closedTrade == null)
+                return;
+
+            double expectedStopLoss = closedTrade.ExpectedLossAtStop;
+            double realizedLossMagnitude = Math.Abs(net);
+            double realizedVsExpected = expectedStopLoss > 0 ? realizedLossMagnitude / expectedStopLoss : 0;
+            double realizedVsTarget = closedTrade.TargetRiskAmount > 0 ? realizedLossMagnitude / closedTrade.TargetRiskAmount : 0;
+
+            Print("REALIZED VS PLAN #{0} | positionId={1} dir={2} volume={3:F2} targetRisk={4:F2} expectedStopLoss={5:F2} rawPlannedLoss={6:F2} minVolLoss={7:F2} net={8:F2} absNet={9:F2} realizedVsExpected={10:F2} realizedVsTarget={11:F2} stopPips={12:F2} pipValuePerUnit={13}",
+                closedTrade.SetupId,
+                position.Id,
+                closedTrade.Direction,
+                closedTrade.VolumeInUnits,
+                closedTrade.TargetRiskAmount,
+                expectedStopLoss,
+                closedTrade.ExpectedLossAtRawVolume,
+                closedTrade.EstimatedLossAtMinVolume,
+                net,
+                realizedLossMagnitude,
+                realizedVsExpected,
+                realizedVsTarget,
+                closedTrade.StopDistancePips,
+                closedTrade.PipValuePerUnit);
+        }
+
         private Position FindTrackedPosition()
         {
             if (_activeTrade == null)
@@ -1114,12 +1267,12 @@ namespace cAlgo.Robots
             _activeSetup = null;
         }
 
-        private void LogSizing(StopDistanceCheck stopCheck, double tpPips, double riskAmount, double pipValuePerUnit, double rawVolumeInUnits, double normalizedVolumeInUnits)
+        private void LogSizing(StopDistanceCheck stopCheck, double tpPips, RiskCalibrationResult riskPlan)
         {
-            Print("SIZING | equityStartDay={0:F2} equityNow={1:F2} riskAmt={2:F2} entry={3:F2} stop={4:F2} stopDist={5:F2} stopPips={6:F2} stopTicks={7:F2} tpPips={8:F2} spread={9:F2} pipSize={10} tickSize={11} pipValue={12} pipValuePerUnit={13} lotSize={14} volStep={15} rawVol={16:F2} normVol={17:F2} relaxContext={18} bandBase=[{19:F2},{20:F2}] bandEff=[{21:F2},{22:F2}] slBuffer={23:F2} atr={24:F2}",
+            Print("SIZING | equityStartDay={0:F2} equityNow={1:F2} riskAmt={2:F2} entry={3:F2} stop={4:F2} stopDist={5:F2} stopPips={6:F2} stopTicks={7:F2} tpPips={8:F2} spread={9:F2} pipSize={10} tickSize={11} pipValue={12} pipValuePerUnit={13} lotSize={14} volStep={15} rawVol={16:F4} normVol={17:F2} minVol={18:F2} rawLoss={19:F2} normLoss={20:F2} minVolLoss={21:F2} normRiskMult={22:F2} minRiskMult={23:F2} warnNorm={24} warnMin={25} rawBelowMin={26} relaxContext={27} bandBase=[{28:F2},{29:F2}] bandEff=[{30:F2},{31:F2}] slBuffer={32:F2} atr={33:F2}",
                 _startOfDayEquity,
                 Account.Equity,
-                riskAmount,
+                riskPlan.RiskAmount,
                 stopCheck.EntryPrice,
                 stopCheck.StopPrice,
                 stopCheck.StopDistancePrice,
@@ -1130,11 +1283,20 @@ namespace cAlgo.Robots
                 Symbol.PipSize,
                 Symbol.TickSize,
                 Symbol.PipValue,
-                pipValuePerUnit,
+                riskPlan.PipValuePerUnit,
                 Symbol.LotSize,
                 Symbol.VolumeInUnitsStep,
-                rawVolumeInUnits,
-                normalizedVolumeInUnits,
+                riskPlan.RawVolumeInUnits,
+                riskPlan.NormalizedVolumeInUnits,
+                riskPlan.MinVolumeInUnits,
+                riskPlan.EstimatedLossRaw,
+                riskPlan.EstimatedLossNormalized,
+                riskPlan.EstimatedLossAtMinVolume,
+                riskPlan.NormalizedRiskMultiple,
+                riskPlan.MinVolumeRiskMultiple,
+                riskPlan.NormalizedRiskWarning,
+                riskPlan.MinVolumeRiskWarning,
+                riskPlan.RawVolumeBelowMin,
                 stopCheck.RelaxationContext,
                 stopCheck.BaseMinPrice,
                 stopCheck.BaseMaxPrice,
@@ -1142,6 +1304,20 @@ namespace cAlgo.Robots
                 stopCheck.EffectiveMaxPrice,
                 stopCheck.SlBuffer,
                 stopCheck.Atr);
+
+            if (riskPlan.NormalizedRiskWarning || riskPlan.MinVolumeRiskWarning || riskPlan.RawVolumeBelowMin)
+            {
+                Print("RISK WARNING | targetRisk={0:F2} rawLoss={1:F2} normLoss={2:F2} minVolLoss={3:F2} rawVol={4:F4} normVol={5:F2} minVol={6:F2} normRiskMult={7:F2} minRiskMult={8:F2}",
+                    riskPlan.RiskAmount,
+                    riskPlan.EstimatedLossRaw,
+                    riskPlan.EstimatedLossNormalized,
+                    riskPlan.EstimatedLossAtMinVolume,
+                    riskPlan.RawVolumeInUnits,
+                    riskPlan.NormalizedVolumeInUnits,
+                    riskPlan.MinVolumeInUnits,
+                    riskPlan.NormalizedRiskMultiple,
+                    riskPlan.MinVolumeRiskMultiple);
+            }
         }
 
         private void LogBiasSnapshotIfNeeded(BiasSnapshot snapshot)
@@ -1637,17 +1813,21 @@ namespace cAlgo.Robots
                 stopCheck.RelaxationContext);
         }
 
-        private void LogOrderRequest(int barIndex, StopDistanceCheck stopCheck, double tpPips, double riskAmount, double volumeInUnits)
+        private void LogOrderRequest(int barIndex, StopDistanceCheck stopCheck, double tpPips, RiskCalibrationResult riskPlan)
         {
-            Print("ORDER REQUEST #{0} | bar={1} time={2:yyyy-MM-dd HH:mm} dir={3} volume={4:F2} stopPips={5:F2} tpPips={6:F2} riskAmt={7:F2} expectedEntry={8:F2} expectedStop={9:F2} stopDist={10:F2} context={11}",
+            Print("ORDER REQUEST #{0} | bar={1} time={2:yyyy-MM-dd HH:mm} dir={3} volume={4:F2} stopPips={5:F2} tpPips={6:F2} targetRisk={7:F2} expectedStopLoss={8:F2} rawLoss={9:F2} minVolLoss={10:F2} normRiskMult={11:F2} expectedEntry={12:F2} expectedStop={13:F2} stopDist={14:F2} context={15}",
                 _activeSetup != null ? _activeSetup.Id : 0,
                 barIndex,
                 Bars.OpenTimes[barIndex],
                 _activeSetup != null ? _activeSetup.Direction.ToString() : "n/a",
-                volumeInUnits,
+                riskPlan.NormalizedVolumeInUnits,
                 stopCheck.StopDistancePips,
                 tpPips,
-                riskAmount,
+                riskPlan.RiskAmount,
+                riskPlan.EstimatedLossNormalized,
+                riskPlan.EstimatedLossRaw,
+                riskPlan.EstimatedLossAtMinVolume,
+                riskPlan.NormalizedRiskMultiple,
                 stopCheck.EntryPrice,
                 stopCheck.StopPrice,
                 stopCheck.StopDistancePrice,
@@ -1768,6 +1948,40 @@ namespace cAlgo.Robots
             public bool BreakEvenMoved { get; set; }
             public long SetupId { get; set; }
             public string RangeKey { get; set; }
+            public double VolumeInUnits { get; set; }
+            public double TargetRiskAmount { get; set; }
+            public double ExpectedLossAtStop { get; set; }
+            public double EstimatedLossAtMinVolume { get; set; }
+            public double ExpectedLossAtRawVolume { get; set; }
+            public double StopDistancePips { get; set; }
+            public double PipValuePerUnit { get; set; }
+            public bool UsedMinVolumeConstraint { get; set; }
+        }
+
+        private class RiskCalibrationResult
+        {
+            public double RiskAmount { get; set; }
+            public double PipValuePerUnit { get; set; }
+            public double RawVolumeInUnits { get; set; }
+            public double NormalizedVolumeInUnits { get; set; }
+            public double MinVolumeInUnits { get; set; }
+            public double EstimatedLossRaw { get; set; }
+            public double EstimatedLossNormalized { get; set; }
+            public double EstimatedLossAtMinVolume { get; set; }
+            public double NormalizedRiskMultiple { get; set; }
+            public double MinVolumeRiskMultiple { get; set; }
+            public bool NormalizedRiskWarning { get; set; }
+            public bool MinVolumeRiskWarning { get; set; }
+            public bool IsSizingMathValid { get; set; }
+            public bool CanTrade { get; set; }
+            public string RejectStatKey { get; set; }
+            public string RejectReason { get; set; }
+            public string RejectDetail { get; set; }
+
+            public bool RawVolumeBelowMin
+            {
+                get { return RawVolumeInUnits < MinVolumeInUnits; }
+            }
         }
 
         private class BiasSnapshot

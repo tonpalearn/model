@@ -74,13 +74,18 @@ DEV_NOTES.md
 ### 2) Pip/point behavior ของ XAUUSD
 โบรกเกอร์แต่ละรายอาจแสดง XAUUSD ต่างกัน เช่น:
 - 0.01 = 1 point
-- pip value / lot size ต่างกัน
+- pip value / tick value / contract sizing ต่างกัน
+- minimum volume ต่างกันมาก
 
 ดังนั้น Test Agent ควรตรวจ:
 - `Symbol.PipSize`
 - `Symbol.PipValue`
+- `Symbol.TickValue`
 - `Symbol.LotSize`
+- `Symbol.VolumeInUnitsMin`
 - volume normalization
+
+Round 7 เปลี่ยน risk calibration ให้ยึด `Symbol.PipValue` ตรงในการประเมิน expected stop loss แล้ว ดังนั้นค่าใน `SYMBOL SPEC` และ `RISK CALIBRATION` สำคัญมากกว่าก่อนหน้า
 
 ### 3) Stop distance practicality
 ค่าตั้งต้น `MinStopDistance` และ `MaxStopDistance` เป็นค่าเชิงตรรกะเริ่มต้น ไม่ใช่ค่าที่ validate แล้วว่าดีที่สุดกับทุก broker
@@ -91,10 +96,17 @@ DEV_NOTES.md
 - `Relaxed Stop Max Multiplier`
 - `Relaxed Stop Min Multiplier`
 
+รอบ 7 เพิ่ม risk-calibration observability ต่อจาก stop-distance โดยตรง:
+- `Risk Calibration Warning Mult`
+- log `RISK CALIBRATION`
+- log `SIZING` ที่มี `rawLoss / normLoss / minVolLoss`
+- reject แบบ explicit: `Broker min volume exceeds target risk`
+- log หลังปิด order: `REALIZED VS PLAN`
+
 ถ้าต้องการ debug downstream execution โดยไม่ผ่อน normal mode:
 - ใช้ `Probe Mode = true`
 - เปิด `Allow Stop Relax In Probe = true`
-- ดู log `STOP DISTANCE LIMITS`, `STOP CHECK`, `SIZING`, `ORDER REQUEST`
+- ดู log `STOP DISTANCE LIMITS`, `STOP CHECK`, `RISK CALIBRATION`, `SIZING`, `ORDER REQUEST`, `REALIZED VS PLAN`
 
 ---
 

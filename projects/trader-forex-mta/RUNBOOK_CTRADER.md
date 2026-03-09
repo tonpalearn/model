@@ -39,10 +39,13 @@
 - INVALIDATE
 - STOP DISTANCE LIMITS
 - STOP CHECK
-- GATE SIZING PASS / REJECT
+- RISK CALIBRATION
 - SIZING
+- RISK WARNING
+- GATE SIZING PASS / REJECT
 - ORDER REQUEST
 - ENTRY
+- REALIZED VS PLAN
 - BE
 - TIME EXIT
 
@@ -57,8 +60,11 @@
 7. breakout ถูก arm แต่ invalidate ก่อนหรือไม่
 8. retest timeout สั้นเกินหรือไม่
 9. `STOP CHECK` reject เพราะ band strict แคบเกินจริงหรือไม่
-10. `SIZING` log แสดง `pipValuePerUnit`, `rawVol`, `normVol` สมเหตุผลหรือไม่
-11. ถ้า `ORDER REQUEST` โผล่แล้ว แต่ไม่เข้า order ให้ดู `GATE ORDER_SUBMIT REJECT`
+10. `RISK CALIBRATION` ระบุ `pipValueMode=DirectSymbolPipValue` และ `SYMBOL SPEC` แสดง `pipValue`/`tickValue` เท่าไร
+11. `SIZING` log แสดง `rawVol`, `normVol`, `rawLoss`, `normLoss`, `minVolLoss`, `minRiskMult` สมเหตุผลหรือไม่
+12. ถ้าเจอ `GATE SIZING REJECT | reason=Broker min volume exceeds target risk` ให้ถือว่า sizing layer กำลังป้องกัน oversize risk ตามเจตนา
+13. ถ้า `ORDER REQUEST` โผล่แล้ว แต่ไม่เข้า order ให้ดู `GATE ORDER_SUBMIT REJECT`
+14. ถ้ามี position ปิดแล้ว ให้ดู `REALIZED VS PLAN` เทียบ `expectedStopLoss` กับ `net`
 
 ## Step 6: สิ่งที่ควรส่งกลับมาให้วิเคราะห์
 - screenshot หน้า parameters

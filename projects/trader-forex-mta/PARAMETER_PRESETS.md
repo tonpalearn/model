@@ -49,26 +49,35 @@
 - ถ้าต้องการเก็บค่า ATR แต่ไม่ให้ block diagnostic: เปิด `Enable ATR Filter = true` แล้วใช้ `Bypass ATR In Diagnostic = true` / `Bypass ATR In Probe = true`
 - ถ้าต้องการทดสอบ ATR จริง: `Enable ATR Filter = true`, `ATR Filter Mode = RawPrice`, เริ่มที่ `Min ATR M15 = 0.0`, `Max ATR M15 = 60.0` แล้วค่อยปรับ
 
-## หมายเหตุรอบ 6 เรื่อง Stop Distance / Sizing
+## หมายเหตุรอบ 6-7 เรื่อง Stop Distance / Sizing / Risk Calibration
 
 ### Conservative baseline
 - `Probe Mode = false`
 - `Allow Stop Relax In Diagnostic = false`
 - `Min Stop Distance = 1.5`
 - `Max Stop Distance = 20.0` ถึง `24.0` สำหรับ XAUUSD ที่ stop แกว่งกว้างจริง
+- `Risk % = 0.25` คงไว้ก่อนเพื่อพิสูจน์ risk alignment ไม่ใช่เพื่อบังคับให้ bot trade
+- `Risk Calibration Warning Mult = 1.20`
 
 ### Downstream debug preset
-ใช้เมื่อ confirmation ผ่านแล้ว แต่อยากรู้ว่าติด broker execution ต่อหรือไม่:
+ใช้เมื่อ confirmation ผ่านแล้ว แต่อยากรู้ว่า risk layer / broker layer เป็นคอขวดหรือไม่:
 - `Probe Mode = true`
 - `Allow Stop Relax In Probe = true`
 - `Relaxed Stop Max Multiplier = 1.60`
 - `Relaxed Stop Min Multiplier = 0.80`
+- `Diagnostic Mode = true`
 
 ### ต้องดู log อะไร
 - `STOP DISTANCE LIMITS`
 - `STOP CHECK`
-- `GATE SIZING PASS/REJECT`
+- `RISK CALIBRATION`
 - `SIZING`
+- `RISK WARNING`
+- `GATE SIZING PASS/REJECT`
 - `ORDER REQUEST`
+- `REALIZED VS PLAN`
 
-ถ้าเห็น `ORDER REQUEST` แปลว่า stop-distance และ sizing math ผ่านแล้ว และ bottleneck ถัดไปอยู่ที่ broker/order submit layer แทน
+### การตีความผล
+- ถ้าเห็น `GATE SIZING REJECT | reason=Broker min volume exceeds target risk` ให้ตีความว่า account/symbol spec ยังไม่รองรับ risk target นี้อย่างปลอดภัย
+- ถ้าเห็น `ORDER REQUEST` พร้อม `expectedStopLoss` ใกล้ `targetRisk` แปลว่า risk sizing เริ่ม align ดีขึ้นแล้ว
+- อย่าเพิ่ม `Risk %` แบบสุ่มเพื่อหลบ min volume reject จนกว่าจะตรวจ `SYMBOL SPEC` และ `SIZING` log ครบ
