@@ -30,6 +30,10 @@
 - spread filter
 - allow same-bar retest confirm
 - trading day offset hours
+- `Sizing Mode`
+- `Fixed Size (Lots)` ถ้าใช้ `FixedLot`
+- `Risk %`
+- `Risk Calibration Warning Mult`
 
 ## Step 4: เปิด log
 ระหว่างรันให้สังเกตข้อความ log เช่น:
@@ -40,7 +44,10 @@
 - STOP DISTANCE LIMITS
 - STOP CHECK
 - RISK CALIBRATION
+- SIZING CONFIG
 - SIZING
+- FIXED LOT CHECK
+- FIXED LOT RISK WARNING
 - RISK WARNING
 - GATE SIZING PASS / REJECT
 - ORDER REQUEST
@@ -62,9 +69,12 @@
 9. `STOP CHECK` reject เพราะ band strict แคบเกินจริงหรือไม่
 10. `RISK CALIBRATION` ระบุ `pipValueMode=DirectSymbolPipValue` และ `SYMBOL SPEC` แสดง `pipValue`/`tickValue` เท่าไร
 11. `SIZING` log แสดง `rawVol`, `normVol`, `rawLoss`, `normLoss`, `minVolLoss`, `minRiskMult` สมเหตุผลหรือไม่
-12. ถ้าเจอ `GATE SIZING REJECT | reason=Broker min volume exceeds target risk` ให้ถือว่า sizing layer กำลังป้องกัน oversize risk ตามเจตนา
-13. ถ้า `ORDER REQUEST` โผล่แล้ว แต่ไม่เข้า order ให้ดู `GATE ORDER_SUBMIT REJECT`
-14. ถ้ามี position ปิดแล้ว ให้ดู `REALIZED VS PLAN` เทียบ `expectedStopLoss` กับ `net`
+12. ถ้าเจอ `GATE SIZING REJECT | reason=Broker min volume exceeds target risk` ให้ถือว่า sizing layer กำลังป้องกัน oversize risk ตามเจตนาใน `RiskBased`
+13. ถ้าใช้ `Sizing Mode = FixedLot` ให้เช็ก `SIZING CONFIG` และ `FIXED LOT CHECK` ก่อนว่า fixed lots ถูก normalize เป็น volume เท่าไรจริง
+14. ถ้าเจอ `FIXED LOT RISK WARNING` ให้ถือว่าขนาด lot ที่ตั้งไว้เสี่ยงสูงกว่า nominal target risk อย่างมีนัยสำคัญ แม้ order layer อาจยังส่งได้
+15. ถ้าเจอ `GATE SIZING REJECT | reason=Fixed lot converts below broker minimum volume` หรือ `Fixed lot above symbol maximum volume` ให้ปรับ `Fixed Size (Lots)` ไม่ใช่ไล่แก้ stop แบบสุ่ม
+16. ถ้า `ORDER REQUEST` โผล่แล้ว แต่ไม่เข้า order ให้ดู `GATE ORDER_SUBMIT REJECT`
+17. ถ้ามี position ปิดแล้ว ให้ดู `REALIZED VS PLAN` เทียบ `expectedStopLoss` กับ `net`
 
 ## Step 6: สิ่งที่ควรส่งกลับมาให้วิเคราะห์
 - screenshot หน้า parameters

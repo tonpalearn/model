@@ -110,6 +110,12 @@ namespace cAlgo.Robots
         [Parameter("Relaxed Stop Min Multiplier", DefaultValue = 0.80, MinValue = 0.10, MaxValue = 1.0, Step = 0.05)]
         public double RelaxedStopDistanceMinMultiplier { get; set; }
 
+        [Parameter("Sizing Mode", DefaultValue = "RiskBased")]
+        public string SizingMode { get; set; }
+
+        [Parameter("Fixed Size (Lots)", DefaultValue = 0.01, MinValue = 0.0, Step = 0.01)]
+        public double FixedLotSize { get; set; }
+
         [Parameter("Risk %", DefaultValue = 0.25, MinValue = 0.01, MaxValue = 5.0, Step = 0.01)]
         public double RiskPercent { get; set; }
 
@@ -223,10 +229,22 @@ namespace cAlgo.Robots
                 Symbol.VolumeInUnitsMin,
                 Symbol.VolumeInUnitsMax,
                 Symbol.VolumeInUnitsStep);
+            double configuredFixedVolumeInUnits = GetFixedVolumeInUnits(FixedLotSize);
+            double configuredFixedVolumeNormalized = configuredFixedVolumeInUnits > 0
+                ? Symbol.NormalizeVolumeInUnits(configuredFixedVolumeInUnits, RoundingMode.Down)
+                : 0;
             Print("RISK CALIBRATION | riskPct={0:F2} pipValueMode=DirectSymbolPipValue warningMult={1:F2} minVolume={2:F2}",
                 RiskPercent,
                 RiskCalibrationWarningMultiple,
                 Symbol.VolumeInUnitsMin);
+            Print("SIZING CONFIG | mode={0} fixedLots={1:F2} fixedVolRaw={2:F2} fixedVolNorm={3:F2} fixedLotsNorm={4:F2} riskPct={5:F2} warningMult={6:F2}",
+                GetSizingModeLabel(),
+                FixedLotSize,
+                configuredFixedVolumeInUnits,
+                configuredFixedVolumeNormalized,
+                VolumeInUnitsToQuantity(configuredFixedVolumeNormalized),
+                RiskPercent,
+                RiskCalibrationWarningMultiple);
             Print("DIAG PARAMS | breakBufferAtr={0:F2}->{1:F2} retestZoneAtr={2:F2}->{3:F2} confirmMode={4}->{5} confirmBody={6:F2}->{7:F2} confirmClosePct={8:F2}->{9:F2} probeBody={10:F2} probeClosePct={11:F2} maxSpread={12:F2}->{13:F2} maxBreakoutAtr={14:F2}->{15:F2}",
                 BreakBufferAtr,
                 GetBreakBufferAtrEffective(),
@@ -606,7 +624,7 @@ namespace cAlgo.Robots
             double tpPips = stopPips * TakeProfitR;
             double riskAmount = _startOfDayEquity * (RiskPercent / 100.0);
             double pipValuePerUnit = GetPipValuePerUnit();
-            RiskCalibrationResult riskPlan = EvaluateRiskCalibration(stopCheck, tpPips, riskAmount, pipValuePerUnit);
+            RiskCalibrationResult riskPlan = EvaluateSizingPlan(stopCheck, tpPips, riskAmount, pipValuePerUnit);
 
             LogSizing(stopCheck, tpPips, riskPlan);
 
@@ -654,6 +672,8 @@ namespace cAlgo.Robots
                 SetupId = _activeSetup.Id,
                 RangeKey = _activeSetup.RangeKey,
                 VolumeInUnits = volumeInUnits,
+                SizingModeLabel = riskPlan.SizingModeLabel,
+                RequestedLots = riskPlan.RequestedLots,
                 TargetRiskAmount = riskPlan.RiskAmount,
                 ExpectedLossAtStop = riskPlan.EstimatedLossNormalized,
                 EstimatedLossAtMinVolume = riskPlan.EstimatedLossAtMinVolume,
@@ -665,9 +685,11 @@ namespace cAlgo.Robots
 
             _tradesToday++;
             LogGatePass("ORDER_SUBMIT", lastClosedIndex, string.Format("positionId={0} volume={1:F2}", result.Position.Id, volumeInUnits));
-            Print("ENTRY {0} #{1} | volume={2} stopPips={3:F1} tpPips={4:F1} targetRisk={5:F2} expectedStopLoss={6:F2} entry={7:F2} sl={8:F2}",
+            Print("ENTRY {0} #{1} | sizingMode={2} fixedLots={3:F2} volume={4:F2} stopPips={5:F1} tpPips={6:F1} targetRisk={7:F2} expectedStopLoss={8:F2} entry={9:F2} sl={10:F2}",
                 _activeSetup.Direction,
                 _activeSetup.Id,
+                riskPlan.SizingModeLabel,
+                riskPlan.RequestedLots,
                 volumeInUnits,
                 stopPips,
                 tpPips,
@@ -846,9 +868,32 @@ namespace cAlgo.Robots
             return volume;
         }
 
-        private RiskCalibrationResult EvaluateRiskCalibration(StopDistanceCheck stopCheck, double tpPips, double riskAmount, double pipValuePerUnit)
+        private double GetFixedVolumeInUnits(double fixedLots)
         {
-            double rawVolumeInUnits = CalculateVolumeInUnits(stopCheck.StopDistancePips, riskAmount, pipValuePerUnit);
+            if (!IsFinitePositive(fixedLots))
+                return 0;
+
+            double volumeInUnits = Symbol.QuantityToVolumeInUnits(fixedLots);
+            return IsFinitePositive(volumeInUnits) ? volumeInUnits : 0;
+        }
+
+        private double VolumeInUnitsToQuantity(double volumeInUnits)
+        {
+            if (!IsFinitePositive(volumeInUnits))
+                return 0;
+
+            double quantity = Symbol.VolumeInUnitsToQuantity(volumeInUnits);
+            return IsFinitePositive(quantity) ? quantity : 0;
+        }
+
+        private RiskCalibrationResult EvaluateSizingPlan(StopDistanceCheck stopCheck, double tpPips, double riskAmount, double pipValuePerUnit)
+        {
+            SizingModeKind sizingMode = GetSizingMode();
+            bool isFixedLotMode = sizingMode == SizingModeKind.FixedLot;
+            double requestedLots = isFixedLotMode ? FixedLotSize : 0;
+            double rawVolumeInUnits = isFixedLotMode
+                ? GetFixedVolumeInUnits(FixedLotSize)
+                : CalculateVolumeInUnits(stopCheck.StopDistancePips, riskAmount, pipValuePerUnit);
             double normalizedVolumeInUnits = rawVolumeInUnits > 0
                 ? Symbol.NormalizeVolumeInUnits(rawVolumeInUnits, RoundingMode.Down)
                 : 0;
@@ -862,6 +907,11 @@ namespace cAlgo.Robots
 
             var result = new RiskCalibrationResult
             {
+                SizingModeLabel = GetSizingModeLabel(sizingMode),
+                RequestedLots = requestedLots,
+                RequestedVolumeInUnits = rawVolumeInUnits,
+                NormalizedLots = VolumeInUnitsToQuantity(normalizedVolumeInUnits),
+                IsFixedLotMode = isFixedLotMode,
                 RiskAmount = riskAmount,
                 PipValuePerUnit = pipValuePerUnit,
                 RawVolumeInUnits = rawVolumeInUnits,
@@ -878,19 +928,29 @@ namespace cAlgo.Robots
                 CanTrade = sizingMathValid,
                 RejectStatKey = "entry.reject.sizingMath",
                 RejectReason = "Sizing math invalid",
-                RejectDetail = string.Format("pipSize={0} tickSize={1} stopPips={2:F2} tpPips={3:F2} pipValuePerUnit={4} rawVolume={5:F4}", Symbol.PipSize, Symbol.TickSize, stopCheck.StopDistancePips, tpPips, pipValuePerUnit, rawVolumeInUnits)
+                RejectDetail = string.Format("mode={0} pipSize={1} tickSize={2} stopPips={3:F2} tpPips={4:F2} pipValuePerUnit={5} rawVolume={6:F4} fixedLots={7:F2}", GetSizingModeLabel(sizingMode), Symbol.PipSize, Symbol.TickSize, stopCheck.StopDistancePips, tpPips, pipValuePerUnit, rawVolumeInUnits, requestedLots)
             };
 
             if (!sizingMathValid)
+            {
+                if (isFixedLotMode && !IsFinitePositive(requestedLots))
+                {
+                    result.RejectReason = "Fixed lot size must be greater than zero";
+                    result.RejectDetail = string.Format("mode={0} fixedLots={1:F2} rawVol={2:F4} stopPips={3:F2} tpPips={4:F2} pipValuePerUnit={5}", result.SizingModeLabel, requestedLots, rawVolumeInUnits, stopCheck.StopDistancePips, tpPips, pipValuePerUnit);
+                }
+
                 return result;
+            }
 
             if (rawVolumeInUnits < minVolumeInUnits)
             {
                 result.CanTrade = false;
                 result.RejectStatKey = "entry.reject.volumeBelowMin";
-                result.RejectReason = "Broker min volume exceeds target risk";
-                result.RejectDetail = string.Format("targetRisk={0:F2} rawVol={1:F4} normVol={2:F2} minVol={3:F2} rawLoss={4:F2} normLoss={5:F2} minVolLoss={6:F2} minRiskMult={7:F2} pipValuePerUnit={8} stopPips={9:F2}",
+                result.RejectReason = isFixedLotMode ? "Fixed lot converts below broker minimum volume" : "Broker min volume exceeds target risk";
+                result.RejectDetail = string.Format("mode={0} targetRisk={1:F2} fixedLots={2:F2} rawVol={3:F4} normVol={4:F2} minVol={5:F2} rawLoss={6:F2} normLoss={7:F2} minVolLoss={8:F2} minRiskMult={9:F2} pipValuePerUnit={10} stopPips={11:F2}",
+                    result.SizingModeLabel,
                     riskAmount,
+                    requestedLots,
                     rawVolumeInUnits,
                     normalizedVolumeInUnits,
                     minVolumeInUnits,
@@ -907,9 +967,11 @@ namespace cAlgo.Robots
             {
                 result.CanTrade = false;
                 result.RejectStatKey = "entry.reject.volumeBelowMin";
-                result.RejectReason = "Normalized volume dropped below broker minimum";
-                result.RejectDetail = string.Format("targetRisk={0:F2} rawVol={1:F4} normVol={2:F2} minVol={3:F2} rawLoss={4:F2} normLoss={5:F2} stopPips={6:F2}",
+                result.RejectReason = isFixedLotMode ? "Normalized fixed lot dropped below broker minimum" : "Normalized volume dropped below broker minimum";
+                result.RejectDetail = string.Format("mode={0} targetRisk={1:F2} fixedLots={2:F2} rawVol={3:F4} normVol={4:F2} minVol={5:F2} rawLoss={6:F2} normLoss={7:F2} stopPips={8:F2}",
+                    result.SizingModeLabel,
                     riskAmount,
+                    requestedLots,
                     rawVolumeInUnits,
                     normalizedVolumeInUnits,
                     minVolumeInUnits,
@@ -923,9 +985,11 @@ namespace cAlgo.Robots
             {
                 result.CanTrade = false;
                 result.RejectStatKey = "entry.reject.volumeAboveMax";
-                result.RejectReason = "Calculated volume above symbol maximum";
-                result.RejectDetail = string.Format("targetRisk={0:F2} rawVol={1:F4} normVol={2:F2} maxVol={3:F2} rawLoss={4:F2} normLoss={5:F2} stopPips={6:F2}",
+                result.RejectReason = isFixedLotMode ? "Fixed lot above symbol maximum volume" : "Calculated volume above symbol maximum";
+                result.RejectDetail = string.Format("mode={0} targetRisk={1:F2} fixedLots={2:F2} rawVol={3:F4} normVol={4:F2} maxVol={5:F2} rawLoss={6:F2} normLoss={7:F2} stopPips={8:F2}",
+                    result.SizingModeLabel,
                     riskAmount,
+                    requestedLots,
                     rawVolumeInUnits,
                     normalizedVolumeInUnits,
                     Symbol.VolumeInUnitsMax,
@@ -1084,6 +1148,28 @@ namespace cAlgo.Robots
             }
         }
 
+        private SizingModeKind GetSizingMode()
+        {
+            string mode = SizingMode ?? string.Empty;
+
+            if (string.Equals(mode, "Fixed", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(mode, "FixedLot", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(mode, "FixedLots", StringComparison.OrdinalIgnoreCase))
+                return SizingModeKind.FixedLot;
+
+            return SizingModeKind.RiskBased;
+        }
+
+        private string GetSizingModeLabel()
+        {
+            return GetSizingModeLabel(GetSizingMode());
+        }
+
+        private string GetSizingModeLabel(SizingModeKind mode)
+        {
+            return mode == SizingModeKind.FixedLot ? "FixedLot" : "RiskBased";
+        }
+
         private AtrFilterModeKind GetAtrFilterMode()
         {
             string mode = AtrFilterMode ?? string.Empty;
@@ -1234,10 +1320,12 @@ namespace cAlgo.Robots
             double realizedVsExpected = expectedStopLoss > 0 ? realizedLossMagnitude / expectedStopLoss : 0;
             double realizedVsTarget = closedTrade.TargetRiskAmount > 0 ? realizedLossMagnitude / closedTrade.TargetRiskAmount : 0;
 
-            Print("REALIZED VS PLAN #{0} | positionId={1} dir={2} volume={3:F2} targetRisk={4:F2} expectedStopLoss={5:F2} rawPlannedLoss={6:F2} minVolLoss={7:F2} net={8:F2} absNet={9:F2} realizedVsExpected={10:F2} realizedVsTarget={11:F2} stopPips={12:F2} pipValuePerUnit={13}",
+            Print("REALIZED VS PLAN #{0} | positionId={1} dir={2} sizingMode={3} fixedLots={4:F2} volume={5:F2} targetRisk={6:F2} expectedStopLoss={7:F2} rawPlannedLoss={8:F2} minVolLoss={9:F2} net={10:F2} absNet={11:F2} realizedVsExpected={12:F2} realizedVsTarget={13:F2} stopPips={14:F2} pipValuePerUnit={15}",
                 closedTrade.SetupId,
                 position.Id,
                 closedTrade.Direction,
+                closedTrade.SizingModeLabel,
+                closedTrade.RequestedLots,
                 closedTrade.VolumeInUnits,
                 closedTrade.TargetRiskAmount,
                 expectedStopLoss,
@@ -1269,7 +1357,12 @@ namespace cAlgo.Robots
 
         private void LogSizing(StopDistanceCheck stopCheck, double tpPips, RiskCalibrationResult riskPlan)
         {
-            Print("SIZING | equityStartDay={0:F2} equityNow={1:F2} riskAmt={2:F2} entry={3:F2} stop={4:F2} stopDist={5:F2} stopPips={6:F2} stopTicks={7:F2} tpPips={8:F2} spread={9:F2} pipSize={10} tickSize={11} pipValue={12} pipValuePerUnit={13} lotSize={14} volStep={15} rawVol={16:F4} normVol={17:F2} minVol={18:F2} rawLoss={19:F2} normLoss={20:F2} minVolLoss={21:F2} normRiskMult={22:F2} minRiskMult={23:F2} warnNorm={24} warnMin={25} rawBelowMin={26} relaxContext={27} bandBase=[{28:F2},{29:F2}] bandEff=[{30:F2},{31:F2}] slBuffer={32:F2} atr={33:F2}",
+            Print("SIZING | mode={0} fixedLots={1:F2} fixedVolRaw={2:F2} fixedVolNorm={3:F2} fixedLotsNorm={4:F2} equityStartDay={5:F2} equityNow={6:F2} riskAmt={7:F2} entry={8:F2} stop={9:F2} stopDist={10:F2} stopPips={11:F2} stopTicks={12:F2} tpPips={13:F2} spread={14:F2} pipSize={15} tickSize={16} pipValue={17} pipValuePerUnit={18} lotSize={19} volStep={20} rawVol={21:F4} normVol={22:F2} minVol={23:F2} rawLoss={24:F2} normLoss={25:F2} minVolLoss={26:F2} normRiskMult={27:F2} minRiskMult={28:F2} warnNorm={29} warnMin={30} rawBelowMin={31} relaxContext={32} bandBase=[{33:F2},{34:F2}] bandEff=[{35:F2},{36:F2}] slBuffer={37:F2} atr={38:F2}",
+                riskPlan.SizingModeLabel,
+                riskPlan.RequestedLots,
+                riskPlan.RequestedVolumeInUnits,
+                riskPlan.NormalizedVolumeInUnits,
+                riskPlan.NormalizedLots,
                 _startOfDayEquity,
                 Account.Equity,
                 riskPlan.RiskAmount,
@@ -1305,9 +1398,22 @@ namespace cAlgo.Robots
                 stopCheck.SlBuffer,
                 stopCheck.Atr);
 
+            if (riskPlan.IsFixedLotMode)
+            {
+                Print("FIXED LOT CHECK | fixedLots={0:F2} fixedVolRaw={1:F2} fixedVolNorm={2:F2} fixedLotsNorm={3:F2} targetRisk={4:F2} expectedStopLoss={5:F2} warningMult={6:F2}",
+                    riskPlan.RequestedLots,
+                    riskPlan.RequestedVolumeInUnits,
+                    riskPlan.NormalizedVolumeInUnits,
+                    riskPlan.NormalizedLots,
+                    riskPlan.RiskAmount,
+                    riskPlan.EstimatedLossNormalized,
+                    RiskCalibrationWarningMultiple);
+            }
+
             if (riskPlan.NormalizedRiskWarning || riskPlan.MinVolumeRiskWarning || riskPlan.RawVolumeBelowMin)
             {
-                Print("RISK WARNING | targetRisk={0:F2} rawLoss={1:F2} normLoss={2:F2} minVolLoss={3:F2} rawVol={4:F4} normVol={5:F2} minVol={6:F2} normRiskMult={7:F2} minRiskMult={8:F2}",
+                Print("RISK WARNING | mode={0} targetRisk={1:F2} rawLoss={2:F2} normLoss={3:F2} minVolLoss={4:F2} rawVol={5:F4} normVol={6:F2} minVol={7:F2} normRiskMult={8:F2} minRiskMult={9:F2}",
+                    riskPlan.SizingModeLabel,
                     riskPlan.RiskAmount,
                     riskPlan.EstimatedLossRaw,
                     riskPlan.EstimatedLossNormalized,
@@ -1317,6 +1423,18 @@ namespace cAlgo.Robots
                     riskPlan.MinVolumeInUnits,
                     riskPlan.NormalizedRiskMultiple,
                     riskPlan.MinVolumeRiskMultiple);
+            }
+
+            if (riskPlan.IsFixedLotMode && riskPlan.NormalizedRiskWarning)
+            {
+                Print("FIXED LOT RISK WARNING | targetRisk={0:F2} expectedStopLoss={1:F2} warningMult={2:F2} fixedLots={3:F2} fixedVolNorm={4:F2} stopPips={5:F2} normRiskMult={6:F2}",
+                    riskPlan.RiskAmount,
+                    riskPlan.EstimatedLossNormalized,
+                    RiskCalibrationWarningMultiple,
+                    riskPlan.RequestedLots,
+                    riskPlan.NormalizedVolumeInUnits,
+                    stopCheck.StopDistancePips,
+                    riskPlan.NormalizedRiskMultiple);
             }
         }
 
@@ -1815,11 +1933,13 @@ namespace cAlgo.Robots
 
         private void LogOrderRequest(int barIndex, StopDistanceCheck stopCheck, double tpPips, RiskCalibrationResult riskPlan)
         {
-            Print("ORDER REQUEST #{0} | bar={1} time={2:yyyy-MM-dd HH:mm} dir={3} volume={4:F2} stopPips={5:F2} tpPips={6:F2} targetRisk={7:F2} expectedStopLoss={8:F2} rawLoss={9:F2} minVolLoss={10:F2} normRiskMult={11:F2} expectedEntry={12:F2} expectedStop={13:F2} stopDist={14:F2} context={15}",
+            Print("ORDER REQUEST #{0} | bar={1} time={2:yyyy-MM-dd HH:mm} dir={3} sizingMode={4} fixedLots={5:F2} volume={6:F2} stopPips={7:F2} tpPips={8:F2} targetRisk={9:F2} expectedStopLoss={10:F2} rawLoss={11:F2} minVolLoss={12:F2} normRiskMult={13:F2} expectedEntry={14:F2} expectedStop={15:F2} stopDist={16:F2} context={17}",
                 _activeSetup != null ? _activeSetup.Id : 0,
                 barIndex,
                 Bars.OpenTimes[barIndex],
                 _activeSetup != null ? _activeSetup.Direction.ToString() : "n/a",
+                riskPlan.SizingModeLabel,
+                riskPlan.RequestedLots,
                 riskPlan.NormalizedVolumeInUnits,
                 stopCheck.StopDistancePips,
                 tpPips,
@@ -1832,6 +1952,12 @@ namespace cAlgo.Robots
                 stopCheck.StopPrice,
                 stopCheck.StopDistancePrice,
                 stopCheck.RelaxationContext);
+        }
+
+        private enum SizingModeKind
+        {
+            RiskBased,
+            FixedLot
         }
 
         private enum AtrFilterModeKind
@@ -1949,6 +2075,8 @@ namespace cAlgo.Robots
             public long SetupId { get; set; }
             public string RangeKey { get; set; }
             public double VolumeInUnits { get; set; }
+            public string SizingModeLabel { get; set; }
+            public double RequestedLots { get; set; }
             public double TargetRiskAmount { get; set; }
             public double ExpectedLossAtStop { get; set; }
             public double EstimatedLossAtMinVolume { get; set; }
@@ -1960,6 +2088,11 @@ namespace cAlgo.Robots
 
         private class RiskCalibrationResult
         {
+            public string SizingModeLabel { get; set; }
+            public double RequestedLots { get; set; }
+            public double RequestedVolumeInUnits { get; set; }
+            public double NormalizedLots { get; set; }
+            public bool IsFixedLotMode { get; set; }
             public double RiskAmount { get; set; }
             public double PipValuePerUnit { get; set; }
             public double RawVolumeInUnits { get; set; }

@@ -67,17 +67,32 @@
 - `Relaxed Stop Min Multiplier = 0.80`
 - `Diagnostic Mode = true`
 
+### FixedLot smoke test preset
+ใช้เพื่อตรวจ flow ของ manual size แบบระวัง:
+- `Sizing Mode = FixedLot`
+- `Fixed Size (Lots) = 0.01` เริ่มเล็กสุดก่อน
+- `Risk % = 0.25` คงไว้เพื่อให้ระบบยังคำนวณ `targetRisk` และเตือน oversize ได้
+- `Risk Calibration Warning Mult = 1.20`
+- `Probe Mode = false` สำหรับรอบแรก ถ้าต้องการทดสอบ downstream ค่อยเปิด
+- ต้องดู `SIZING CONFIG`, `FIXED LOT CHECK`, `ORDER REQUEST`, `ENTRY`
+
 ### ต้องดู log อะไร
 - `STOP DISTANCE LIMITS`
 - `STOP CHECK`
 - `RISK CALIBRATION`
+- `SIZING CONFIG`
 - `SIZING`
+- `FIXED LOT CHECK` (เมื่อใช้ `Sizing Mode = FixedLot`)
+- `FIXED LOT RISK WARNING` (ถ้า fixed lot เสี่ยงสูงกว่าค่า target risk มาก)
 - `RISK WARNING`
 - `GATE SIZING PASS/REJECT`
 - `ORDER REQUEST`
 - `REALIZED VS PLAN`
 
 ### การตีความผล
-- ถ้าเห็น `GATE SIZING REJECT | reason=Broker min volume exceeds target risk` ให้ตีความว่า account/symbol spec ยังไม่รองรับ risk target นี้อย่างปลอดภัย
+- ถ้าเห็น `GATE SIZING REJECT | reason=Broker min volume exceeds target risk` ให้ตีความว่า account/symbol spec ยังไม่รองรับ risk target นี้อย่างปลอดภัยใน `RiskBased`
+- ถ้าเห็น `GATE SIZING REJECT | reason=Fixed lot converts below broker minimum volume` หรือ `Fixed lot above symbol maximum volume` ให้แปลว่า fixed lot ที่ตั้งไว้ไม่ผ่าน broker spec
 - ถ้าเห็น `ORDER REQUEST` พร้อม `expectedStopLoss` ใกล้ `targetRisk` แปลว่า risk sizing เริ่ม align ดีขึ้นแล้ว
-- อย่าเพิ่ม `Risk %` แบบสุ่มเพื่อหลบ min volume reject จนกว่าจะตรวจ `SYMBOL SPEC` และ `SIZING` log ครบ
+- ถ้าใช้ `Sizing Mode = FixedLot` ให้ดู `FIXED LOT CHECK` และเทียบ `expectedStopLoss` กับ `targetRisk` ก่อนสรุปผล
+- ถ้าเห็น `FIXED LOT RISK WARNING` ให้ถือว่า fixed lot ปัจจุบันใหญ่กว่ากรอบ nominal risk ที่ตั้งไว้พอสมควร แม้ระบบยังอาจส่งคำสั่งได้
+- อย่าเพิ่ม `Risk %` หรือ `Fixed Size (Lots)` แบบสุ่มเพื่อหลบ reject จนกว่าจะตรวจ `SYMBOL SPEC`, `SIZING CONFIG`, และ `SIZING` log ครบ
