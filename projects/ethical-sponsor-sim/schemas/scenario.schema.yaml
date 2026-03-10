@@ -1,0 +1,21 @@
+type: object
+required:
+  - scenario_id
+  - persona_id
+  - strategy_id
+  - objective
+properties:
+  scenario_id:
+    type: string
+  persona_id:
+    type: string
+  strategy_id:
+    type: string
+  objective:
+    type: string
+  conversation_constraints:
+    type: array
+    items: { type: string }
+  expected_test_points:
+    type: array
+    items: { type: string }

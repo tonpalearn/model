@@ -1,0 +1,83 @@
+personas:
+  - id: p-office-skeptical-01
+    label: skeptical office worker
+    age_range: 28-35
+    occupation: office employee
+    education: bachelor
+    family_context: single
+    financial_pressure: medium
+    communication_style: polite but skeptical
+    prior_direct_selling_experience: negative
+    motivations:
+      - wants extra income
+      - wants more flexibility
+    concerns:
+      - reputation risk
+      - hidden costs
+      - pressure from uplines
+    trust_threshold: high
+    sales_tolerance: low
+    time_availability: evenings only
+    notes: dislikes vague claims and social pressure
+
+  - id: p-newgrad-hopeful-02
+    label: hopeful new graduate
+    age_range: 21-24
+    occupation: recent graduate
+    education: bachelor
+    family_context: lives with parents
+    financial_pressure: high
+    communication_style: friendly and curious
+    prior_direct_selling_experience: none
+    motivations:
+      - wants to earn quickly
+      - wants a sense of momentum in life
+    concerns:
+      - fear of being misled
+      - uncertainty about selling skills
+    trust_threshold: medium
+    sales_tolerance: medium
+    time_availability: high
+    notes: high interest but vulnerable to unrealistic expectations
+
+  - id: p-parent-home-03
+    label: stay-at-home parent
+    age_range: 32-42
+    occupation: caregiver / homemaker
+    education: diploma
+    family_context: married with children
+    financial_pressure: medium
+    communication_style: warm but practical
+    prior_direct_selling_experience: neutral
+    motivations:
+      - income from home
+      - flexible schedule
+    concerns:
+      - upfront costs
+      - time-energy balance
+      - pressure to recruit friends
+    trust_threshold: high
+    sales_tolerance: low
+    time_availability: fragmented
+    notes: needs concrete explanation of workload and support
+
+  - id: p-owner-time-poor-04
+    label: small business owner
+    age_range: 35-48
+    occupation: small business owner
+    education: bachelor
+    family_context: married
+    financial_pressure: low
+    communication_style: direct and impatient
+    prior_direct_selling_experience: none
+    motivations:
+      - scalable side opportunity
+      - network leverage
+    concerns:
+      - wasted time
+      - weak economics
+      - dependency on recruiting
+    trust_threshold: high
+    sales_tolerance: medium
+    time_availability: low
+    notes: prefers blunt qualification over warm social framing
