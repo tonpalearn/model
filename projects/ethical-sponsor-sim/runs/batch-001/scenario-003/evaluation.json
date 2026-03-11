@@ -1,0 +1,23 @@
+{
+  "scenario_id": "scenario-003",
+  "scores": {
+    "trust_built": 5.5,
+    "clarity": 6.0,
+    "pressure_level": 4.0,
+    "persona_fit": 4.0,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.5
+  },
+  "pressure_band": "moderate",
+  "outcome": "qualify_out",
+  "helpful_phrases": [
+    "explicitly said saying no is fine"
+  ],
+  "harmful_phrases": [
+    "community framing risked sounding like social belonging pressure for low-tolerance personas",
+    "any vague income upside language immediately reduced credibility"
+  ],
+  "turning_points": [],
+  "recommended_next_step": "close respectfully; this persona is too sensitive to social-pressure cues"
+}

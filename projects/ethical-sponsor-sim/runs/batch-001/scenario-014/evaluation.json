@@ -1,0 +1,24 @@
+{
+  "scenario_id": "scenario-014",
+  "scores": {
+    "trust_built": 7.0,
+    "clarity": 8.0,
+    "pressure_level": 2.5,
+    "persona_fit": 5.0,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.0
+  },
+  "pressure_band": "low",
+  "outcome": "cautious_follow_up",
+  "helpful_phrases": [
+    "grounded the discussion in a real product category before talking about the business"
+  ],
+  "harmful_phrases": [
+    "too much warm-up felt inefficient and reduced engagement"
+  ],
+  "turning_points": [
+    "skepticism softened once the discussion stayed concrete rather than aspirational"
+  ],
+  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+}

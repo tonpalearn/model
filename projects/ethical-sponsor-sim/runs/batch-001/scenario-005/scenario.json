@@ -1,0 +1,13 @@
+{
+  "scenario_id": "scenario-005",
+  "batch_id": "batch-001",
+  "persona_id": "p-newgrad-hopeful-02",
+  "strategy_id": "s-consultative-01",
+  "objective": "test ethical sponsor conversation pattern",
+  "constraints": [
+    "no hype",
+    "no coercion",
+    "surface workload/costs early",
+    "qualify out if poor fit"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "scenario_id": "scenario-004",
+  "scores": {
+    "trust_built": 5.0,
+    "clarity": 7.5,
+    "pressure_level": 2.5,
+    "persona_fit": 5.0,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.0
+  },
+  "pressure_band": "low",
+  "outcome": "cautious_follow_up",
+  "helpful_phrases": [
+    "named the required skills and effort in blunt business terms"
+  ],
+  "harmful_phrases": [
+    "any vague income upside language immediately reduced credibility"
+  ],
+  "turning_points": [
+    "fit became clearer once the sponsor described the work as a people-driven micro-business"
+  ],
+  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+}

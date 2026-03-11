@@ -1,0 +1,24 @@
+{
+  "scenario_id": "scenario-002",
+  "scores": {
+    "trust_built": 8.5,
+    "clarity": 7.0,
+    "pressure_level": 2.0,
+    "persona_fit": 5.5,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.0
+  },
+  "pressure_band": "low",
+  "outcome": "continue",
+  "helpful_phrases": [
+    "grounded the discussion in a real product category before talking about the business"
+  ],
+  "harmful_phrases": [
+    "any vague income upside language immediately reduced credibility"
+  ],
+  "turning_points": [
+    "skepticism softened once the discussion stayed concrete rather than aspirational"
+  ],
+  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+}

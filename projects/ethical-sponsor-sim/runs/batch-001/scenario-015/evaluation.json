@@ -1,0 +1,23 @@
+{
+  "scenario_id": "scenario-015",
+  "scores": {
+    "trust_built": 6.0,
+    "clarity": 7.0,
+    "pressure_level": 4.5,
+    "persona_fit": 4.0,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.0
+  },
+  "pressure_band": "moderate",
+  "outcome": "qualify_out",
+  "helpful_phrases": [
+    "explicitly said saying no is fine"
+  ],
+  "harmful_phrases": [
+    "community framing risked sounding like social belonging pressure for low-tolerance personas",
+    "too much warm-up felt inefficient and reduced engagement"
+  ],
+  "turning_points": [],
+  "recommended_next_step": "stop after confirming the time model is a mismatch"
+}

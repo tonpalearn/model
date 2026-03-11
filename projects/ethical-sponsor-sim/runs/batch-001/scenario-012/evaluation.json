@@ -1,0 +1,25 @@
+{
+  "scenario_id": "scenario-012",
+  "scores": {
+    "trust_built": 6.0,
+    "clarity": 7.5,
+    "pressure_level": 4.0,
+    "persona_fit": 5.5,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.0
+  },
+  "pressure_band": "moderate",
+  "outcome": "qualify_out",
+  "helpful_phrases": [
+    "named the required skills and effort in blunt business terms",
+    "discussion of schedule fragmentation and energy cost made the conversation feel realistic"
+  ],
+  "harmful_phrases": [
+    "unclear onboarding time estimates created hesitation"
+  ],
+  "turning_points": [
+    "fit became clearer once the sponsor described the work as a people-driven micro-business"
+  ],
+  "recommended_next_step": "do not push a business next step; offer product-only or no action"
+}

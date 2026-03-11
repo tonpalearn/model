@@ -1,0 +1,25 @@
+{
+  "scenario_id": "scenario-013",
+  "scores": {
+    "trust_built": 8.5,
+    "clarity": 8.5,
+    "pressure_level": 3.0,
+    "persona_fit": 5.0,
+    "objection_handling": 7.5,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 8.0
+  },
+  "pressure_band": "low",
+  "outcome": "cautious_follow_up",
+  "helpful_phrases": [
+    "opened by asking about goals before pitching",
+    "stated early that the model is not a fit for everyone"
+  ],
+  "harmful_phrases": [
+    "too much warm-up felt inefficient and reduced engagement"
+  ],
+  "turning_points": [
+    "trust increased when the sponsor surfaced workload and social requirements early"
+  ],
+  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+}

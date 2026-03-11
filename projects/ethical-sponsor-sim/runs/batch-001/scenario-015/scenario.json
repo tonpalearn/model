@@ -1,0 +1,13 @@
+{
+  "scenario_id": "scenario-015",
+  "batch_id": "batch-001",
+  "persona_id": "p-owner-time-poor-04",
+  "strategy_id": "s-community-03",
+  "objective": "test ethical sponsor conversation pattern",
+  "constraints": [
+    "no hype",
+    "no coercion",
+    "surface workload/costs early",
+    "qualify out if poor fit"
+  ]
+}

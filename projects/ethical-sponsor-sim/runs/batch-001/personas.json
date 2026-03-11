@@ -1,0 +1,73 @@
+[
+  {
+    "id": "p-office-skeptical-01",
+    "label": "skeptical office worker",
+    "communication_style": "polite but skeptical",
+    "motivations": [
+      "extra income",
+      "more flexibility"
+    ],
+    "concerns": [
+      "reputation risk",
+      "hidden costs",
+      "pressure from uplines"
+    ],
+    "trust_threshold": "high",
+    "sales_tolerance": "low",
+    "time_availability": "evenings only",
+    "notes": "dislikes vague claims and social pressure"
+  },
+  {
+    "id": "p-newgrad-hopeful-02",
+    "label": "hopeful new graduate",
+    "communication_style": "friendly and curious",
+    "motivations": [
+      "earn quickly",
+      "sense of momentum"
+    ],
+    "concerns": [
+      "fear of being misled",
+      "uncertainty about selling skills"
+    ],
+    "trust_threshold": "medium",
+    "sales_tolerance": "medium",
+    "time_availability": "high",
+    "notes": "high interest but vulnerable to unrealistic expectations"
+  },
+  {
+    "id": "p-parent-home-03",
+    "label": "stay-at-home parent",
+    "communication_style": "warm but practical",
+    "motivations": [
+      "income from home",
+      "flexible schedule"
+    ],
+    "concerns": [
+      "upfront costs",
+      "time-energy balance",
+      "pressure to recruit friends"
+    ],
+    "trust_threshold": "high",
+    "sales_tolerance": "low",
+    "time_availability": "fragmented",
+    "notes": "needs concrete explanation of workload and support"
+  },
+  {
+    "id": "p-owner-time-poor-04",
+    "label": "small business owner",
+    "communication_style": "direct and impatient",
+    "motivations": [
+      "scalable side opportunity",
+      "network leverage"
+    ],
+    "concerns": [
+      "wasted time",
+      "weak economics",
+      "dependency on recruiting"
+    ],
+    "trust_threshold": "high",
+    "sales_tolerance": "medium",
+    "time_availability": "low",
+    "notes": "prefers blunt qualification over warm social framing"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "s-consultative-01",
+    "label": "consultative fit-first",
+    "opening_style": "ask about goals first",
+    "framing": "suitability and realistic expectations",
+    "tone": "calm and professional",
+    "primary_goal": "determine fit before discussing next steps"
+  },
+  {
+    "id": "s-product-first-02",
+    "label": "product-first educational",
+    "opening_style": "start from product value and customer use",
+    "framing": "product experience before business opportunity",
+    "tone": "practical and low-pressure",
+    "primary_goal": "reduce suspicion by grounding in tangible value"
+  },
+  {
+    "id": "s-community-03",
+    "label": "community and support",
+    "opening_style": "relational but respectful",
+    "framing": "learning environment and support system",
+    "tone": "warm and reassuring",
+    "primary_goal": "test whether support/community matters to the persona"
+  },
+  {
+    "id": "s-entrepreneurial-04",
+    "label": "small-business framing",
+    "opening_style": "direct business framing",
+    "framing": "skill-building and micro-entrepreneurship",
+    "tone": "concise and serious",
+    "primary_goal": "appeal to autonomy-oriented personas without overpromising"
+  }
+]

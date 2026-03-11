@@ -1,0 +1,24 @@
+{
+  "scenario_id": "scenario-011",
+  "scores": {
+    "trust_built": 7.5,
+    "clarity": 6.0,
+    "pressure_level": 3.5,
+    "persona_fit": 4.5,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.0
+  },
+  "pressure_band": "moderate",
+  "outcome": "cautious_follow_up",
+  "helpful_phrases": [
+    "explicitly said saying no is fine",
+    "discussion of schedule fragmentation and energy cost made the conversation feel realistic"
+  ],
+  "harmful_phrases": [
+    "community framing risked sounding like social belonging pressure for low-tolerance personas",
+    "unclear onboarding time estimates created hesitation"
+  ],
+  "turning_points": [],
+  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+}

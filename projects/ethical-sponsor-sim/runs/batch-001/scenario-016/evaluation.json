@@ -1,0 +1,24 @@
+{
+  "scenario_id": "scenario-016",
+  "scores": {
+    "trust_built": 6.5,
+    "clarity": 8.5,
+    "pressure_level": 3.0,
+    "persona_fit": 7.0,
+    "objection_handling": 6.0,
+    "next_step_quality": 6.0,
+    "ethical_continuation": 6.0
+  },
+  "pressure_band": "low",
+  "outcome": "continue",
+  "helpful_phrases": [
+    "named the required skills and effort in blunt business terms"
+  ],
+  "harmful_phrases": [
+    "too much warm-up felt inefficient and reduced engagement"
+  ],
+  "turning_points": [
+    "fit became clearer once the sponsor described the work as a people-driven micro-business"
+  ],
+  "recommended_next_step": "send a concise economics + workload memo, then short follow-up Q&A"
+}
