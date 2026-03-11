@@ -1,9 +1,9 @@
 # scenario-001
 
-- Persona: skeptical office worker
-- Strategy: consultative fit-first
-- Outcome: continue
-- Pressure: low
-- Best move: opened by asking about goals before pitching
-- Main caution: any vague income upside language immediately reduced credibility
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: พนักงานออฟฟิศสายระวังตัว
+- Strategy: แนวปรึกษา เน้นดูความเหมาะสมก่อน
+- Outcome: ไปต่อได้
+- Pressure: ต่ำ
+- จุดเด่น: เปิดบทสนทนาด้วยการถามเป้าหมายก่อน ไม่รีบ pitch
+- ข้อควรระวัง: ถ้ามีคำพูดแนวรายได้สวยๆ แบบคลุมเครือ ความน่าเชื่อถือจะตกทันที
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

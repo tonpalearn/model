@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-008",
+  "pressure_band": "ต่ำ",
+  "outcome": "ไปต่อได้",
+  "recommended_next_step": "ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ",
   "scores": {
     "trust_built": 6.0,
     "clarity": 8.0,
@@ -9,16 +12,13 @@
     "next_step_quality": 5.5,
     "ethical_continuation": 6.0
   },
-  "pressure_band": "low",
-  "outcome": "continue",
-  "helpful_phrases": [
-    "named the required skills and effort in blunt business terms"
+  "helpful_points": [
+    "พูดตรงเรื่องทักษะและ effort ที่ต้องใช้ ทำให้ภาพชัด"
   ],
-  "harmful_phrases": [
-    "vulnerability to hopeful framing means the sponsor must slow the pace and de-romanticize earnings"
+  "caution_points": [
+    "persona นี้มีความหวังสูง จึงต้องชะลอจังหวะและลดภาพฝันเรื่องรายได้เสมอ"
   ],
   "turning_points": [
-    "fit became clearer once the sponsor described the work as a people-driven micro-business"
-  ],
-  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+    "ความเหมาะสมเห็นชัดขึ้นเมื่อ framing เป็นธุรกิจย่อยที่ต้องลงแรงจริง"
+  ]
 }

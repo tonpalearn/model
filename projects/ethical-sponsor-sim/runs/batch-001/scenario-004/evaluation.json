@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-004",
+  "pressure_band": "ต่ำ",
+  "outcome": "ติดตามต่อได้แบบระวัง",
+  "recommended_next_step": "ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ",
   "scores": {
     "trust_built": 5.0,
     "clarity": 7.5,
@@ -9,16 +12,13 @@
     "next_step_quality": 6.0,
     "ethical_continuation": 6.0
   },
-  "pressure_band": "low",
-  "outcome": "cautious_follow_up",
-  "helpful_phrases": [
-    "named the required skills and effort in blunt business terms"
+  "helpful_points": [
+    "พูดตรงเรื่องทักษะและ effort ที่ต้องใช้ ทำให้ภาพชัด"
   ],
-  "harmful_phrases": [
-    "any vague income upside language immediately reduced credibility"
+  "caution_points": [
+    "ถ้ามีคำพูดแนวรายได้สวยๆ แบบคลุมเครือ ความน่าเชื่อถือจะตกทันที"
   ],
   "turning_points": [
-    "fit became clearer once the sponsor described the work as a people-driven micro-business"
-  ],
-  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+    "ความเหมาะสมเห็นชัดขึ้นเมื่อ framing เป็นธุรกิจย่อยที่ต้องลงแรงจริง"
+  ]
 }

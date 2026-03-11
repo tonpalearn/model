@@ -1,9 +1,9 @@
 # scenario-009
 
-- Persona: stay-at-home parent
-- Strategy: consultative fit-first
-- Outcome: continue
-- Pressure: low
-- Best move: opened by asking about goals before pitching
-- Main caution: unclear onboarding time estimates created hesitation
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: คุณพ่อ/คุณแม่ที่ดูแลบ้าน
+- Strategy: แนวปรึกษา เน้นดูความเหมาะสมก่อน
+- Outcome: ไปต่อได้
+- Pressure: ต่ำ
+- จุดเด่น: เปิดบทสนทนาด้วยการถามเป้าหมายก่อน ไม่รีบ pitch
+- ข้อควรระวัง: ถ้าอธิบายเวลา onboarding ไม่ชัด จะทำให้ลังเลทันที
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

@@ -1,9 +1,9 @@
 # scenario-011
 
-- Persona: stay-at-home parent
-- Strategy: community and support
-- Outcome: cautious_follow_up
-- Pressure: moderate
-- Best move: explicitly said saying no is fine
-- Main caution: community framing risked sounding like social belonging pressure for low-tolerance personas
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: คุณพ่อ/คุณแม่ที่ดูแลบ้าน
+- Strategy: เน้นชุมชนและการซัพพอร์ต
+- Outcome: ติดตามต่อได้แบบระวัง
+- Pressure: กลาง
+- จุดเด่น: มีการย้ำว่าปฏิเสธได้ ทำให้ไม่ดูบีบเกินไป
+- ข้อควรระวัง: ภาษาที่เน้น community เสี่ยงถูกตีความเป็นแรงกดดันเชิงการเป็นส่วนหนึ่งของกลุ่ม
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

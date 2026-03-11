@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-009",
+  "pressure_band": "ต่ำ",
+  "outcome": "ไปต่อได้",
+  "recommended_next_step": "ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ",
   "scores": {
     "trust_built": 9.0,
     "clarity": 7.5,
@@ -9,18 +12,15 @@
     "next_step_quality": 6.0,
     "ethical_continuation": 8.0
   },
-  "pressure_band": "low",
-  "outcome": "continue",
-  "helpful_phrases": [
-    "opened by asking about goals before pitching",
-    "stated early that the model is not a fit for everyone",
-    "discussion of schedule fragmentation and energy cost made the conversation feel realistic"
+  "helpful_points": [
+    "เปิดบทสนทนาด้วยการถามเป้าหมายก่อน ไม่รีบ pitch",
+    "บอกชัดตั้งแต่ต้นว่าโอกาสนี้ไม่เหมาะกับทุกคน",
+    "การพูดเรื่องเวลาแบบเป็นช่วงๆ และพลังงานที่ต้องใช้ ทำให้บทสนทนาดูสมจริง"
   ],
-  "harmful_phrases": [
-    "unclear onboarding time estimates created hesitation"
+  "caution_points": [
+    "ถ้าอธิบายเวลา onboarding ไม่ชัด จะทำให้ลังเลทันที"
   ],
   "turning_points": [
-    "trust increased when the sponsor surfaced workload and social requirements early"
-  ],
-  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+    "ความไว้ใจเพิ่มขึ้นเมื่อ sponsor พูดเรื่องภาระงานและความต้องใช้คนให้ฟังเร็ว"
+  ]
 }

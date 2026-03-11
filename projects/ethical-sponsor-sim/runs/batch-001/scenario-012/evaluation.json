@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-012",
+  "pressure_band": "กลาง",
+  "outcome": "ควรคัดออกอย่างสุภาพ",
+  "recommended_next_step": "ไม่ควรดันไปต่อทางธุรกิจ อาจเสนอแค่ product-only หรือจบอย่างสุภาพ",
   "scores": {
     "trust_built": 6.0,
     "clarity": 7.5,
@@ -9,17 +12,14 @@
     "next_step_quality": 6.0,
     "ethical_continuation": 6.0
   },
-  "pressure_band": "moderate",
-  "outcome": "qualify_out",
-  "helpful_phrases": [
-    "named the required skills and effort in blunt business terms",
-    "discussion of schedule fragmentation and energy cost made the conversation feel realistic"
+  "helpful_points": [
+    "พูดตรงเรื่องทักษะและ effort ที่ต้องใช้ ทำให้ภาพชัด",
+    "การพูดเรื่องเวลาแบบเป็นช่วงๆ และพลังงานที่ต้องใช้ ทำให้บทสนทนาดูสมจริง"
   ],
-  "harmful_phrases": [
-    "unclear onboarding time estimates created hesitation"
+  "caution_points": [
+    "ถ้าอธิบายเวลา onboarding ไม่ชัด จะทำให้ลังเลทันที"
   ],
   "turning_points": [
-    "fit became clearer once the sponsor described the work as a people-driven micro-business"
-  ],
-  "recommended_next_step": "do not push a business next step; offer product-only or no action"
+    "ความเหมาะสมเห็นชัดขึ้นเมื่อ framing เป็นธุรกิจย่อยที่ต้องลงแรงจริง"
+  ]
 }

@@ -1,9 +1,9 @@
 # scenario-014
 
-- Persona: small business owner
-- Strategy: product-first educational
-- Outcome: cautious_follow_up
-- Pressure: low
-- Best move: grounded the discussion in a real product category before talking about the business
-- Main caution: too much warm-up felt inefficient and reduced engagement
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: เจ้าของกิจการที่เวลาน้อย
+- Strategy: เริ่มจากสินค้าแบบให้ความรู้
+- Outcome: ติดตามต่อได้แบบระวัง
+- Pressure: ต่ำ
+- จุดเด่น: คุยเรื่องสินค้าที่จับต้องได้ก่อน ทำให้บทสนทนาดูจริงและไม่ลอย
+- ข้อควรระวัง: ถ้า warm-up เยอะเกินไป จะถูกมองว่าเสียเวลาและ engagement จะลดลง
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

@@ -2,12 +2,14 @@
   "scenario_id": "scenario-003",
   "batch_id": "batch-001",
   "persona_id": "p-office-skeptical-01",
+  "persona_label": "พนักงานออฟฟิศสายระวังตัว",
   "strategy_id": "s-community-03",
-  "objective": "test ethical sponsor conversation pattern",
+  "strategy_label": "เน้นชุมชนและการซัพพอร์ต",
+  "objective": "ทดสอบรูปแบบการชวนแบบ ethical ว่าแบบไหนชัดเจน เชื่อถือได้ และคัดกรองคนได้ดี",
   "constraints": [
-    "no hype",
-    "no coercion",
-    "surface workload/costs early",
-    "qualify out if poor fit"
+    "ห้าม hype",
+    "ห้าม coercion",
+    "ต้องเปิดเรื่อง workload / cost เร็ว",
+    "ถ้าไม่ fit ต้อง qualify out ได้"
   ]
 }

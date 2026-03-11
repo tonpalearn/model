@@ -1,9 +1,9 @@
 # scenario-006
 
-- Persona: hopeful new graduate
-- Strategy: product-first educational
-- Outcome: continue
-- Pressure: low
-- Best move: grounded the discussion in a real product category before talking about the business
-- Main caution: vulnerability to hopeful framing means the sponsor must slow the pace and de-romanticize earnings
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: เด็กจบใหม่ที่มีความหวังสูง
+- Strategy: เริ่มจากสินค้าแบบให้ความรู้
+- Outcome: ไปต่อได้
+- Pressure: ต่ำ
+- จุดเด่น: คุยเรื่องสินค้าที่จับต้องได้ก่อน ทำให้บทสนทนาดูจริงและไม่ลอย
+- ข้อควรระวัง: persona นี้มีความหวังสูง จึงต้องชะลอจังหวะและลดภาพฝันเรื่องรายได้เสมอ
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

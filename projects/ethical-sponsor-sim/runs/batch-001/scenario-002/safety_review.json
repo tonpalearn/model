@@ -1,10 +1,10 @@
 {
   "scenario_id": "scenario-002",
-  "manipulation_risk": "low",
-  "ambiguous_earning_claim": "none",
-  "hidden_effort_risk": "low",
-  "hidden_cost_risk": "low",
-  "social_pressure_risk": "low",
-  "urgency_or_coercion_risk": "none",
+  "manipulation_risk": "ต่ำ",
+  "ambiguous_earning_claim": "ไม่พบ",
+  "hidden_effort_risk": "ต่ำ",
+  "hidden_cost_risk": "ต่ำ",
+  "social_pressure_risk": "ต่ำ",
+  "urgency_or_coercion_risk": "ไม่พบ",
   "flags": []
 }

@@ -1,75 +1,77 @@
-# Batch 001 Report
+# รายงาน Batch 001
 
-Scenarios run: 16
+## สรุปสั้นสำหรับคนตัดสินใจ
 
-## Headline findings
+- รันทั้งหมด: 16 scenarios
+- วิธีคุยที่สร้างความไว้ใจดีที่สุด: **แนวปรึกษา เน้นดูความเหมาะสมก่อน** (คะแนนเฉลี่ย 8.62)
+- วิธีคุยที่ทำให้เรื่องชัดที่สุด: **กรอบคิดแบบธุรกิจย่อย** (คะแนนเฉลี่ย 7.88)
+- วิธีคุยที่กดดันน้อยที่สุด: **เริ่มจากสินค้าแบบให้ความรู้** (คะแนนเฉลี่ย 2.38)
+- วิธีคุยที่ต้องระวังที่สุด: **เน้นชุมชนและการซัพพอร์ต** เพราะมีโอกาสถูกตีความเป็นแรงกดดันทางสังคม
 
-- Highest average trust: consultative fit-first (8.62)
-- Highest average clarity: small-business framing (7.88)
-- Lowest average pressure: product-first educational (2.38)
-- Most fragile strategy: community and support (social-pressure risk surfaced repeatedly)
+## ข้อสรุปสำคัญ
 
-## Findings by strategy
+1. ถ้าอยากได้ความไว้ใจ ให้เริ่มจากถามเป้าหมายและข้อกังวลก่อน pitch
+2. ถ้าอยากลดแรงต้าน ให้เริ่มจากของจริง เช่น สินค้า การใช้งาน และภาระงานจริง
+3. ถ้าใช้มุม community ต้องระวังมาก เพราะบาง persona แพ้ framing แบบนี้ทันที
+4. คนที่ดูสนใจมาก ไม่ได้แปลว่าเหมาะ — โดยเฉพาะ persona ที่มีแนวโน้มหวังรายได้เร็ว
 
-### consultative fit-first
-- Avg trust: 8.62
-- Avg clarity: 7.75
-- Avg pressure: 2.88
-- Avg fit: 5.62
-- Notes: Works best for skeptical or practical personas.
+## ตารางคะแนนตาม strategy
 
-### product-first educational
-- Avg trust: 7.62
-- Avg clarity: 7.25
-- Avg pressure: 2.38
-- Avg fit: 5.62
-- Notes: Works best for skeptical or practical personas.
+### แนวปรึกษา เน้นดูความเหมาะสมก่อน
+- ความไว้ใจ (trust): 8.62
+- ความชัดเจน (clarity): 7.75
+- แรงกดดัน (pressure): 2.88
+- ความเหมาะสมกับ persona (fit): 5.62
 
-### community and support
-- Avg trust: 6.38
-- Avg clarity: 6.25
-- Avg pressure: 4.12
-- Avg fit: 4.62
-- Notes: Needs tighter guardrails around belonging language.
+### เริ่มจากสินค้าแบบให้ความรู้
+- ความไว้ใจ (trust): 7.62
+- ความชัดเจน (clarity): 7.25
+- แรงกดดัน (pressure): 2.38
+- ความเหมาะสมกับ persona (fit): 5.62
 
-### small-business framing
-- Avg trust: 5.88
-- Avg clarity: 7.88
-- Avg pressure: 3.12
-- Avg fit: 6.12
-- Notes: Best for autonomy-oriented, time-sensitive prospects.
+### เน้นชุมชนและการซัพพอร์ต
+- ความไว้ใจ (trust): 6.38
+- ความชัดเจน (clarity): 6.25
+- แรงกดดัน (pressure): 4.12
+- ความเหมาะสมกับ persona (fit): 4.62
 
-## Findings by persona
+### กรอบคิดแบบธุรกิจย่อย
+- ความไว้ใจ (trust): 5.88
+- ความชัดเจน (clarity): 7.88
+- แรงกดดัน (pressure): 3.12
+- ความเหมาะสมกับ persona (fit): 6.12
 
-### skeptical office worker
-- Best pattern: consultative fit-first (scenario-001)
-- Fragile pattern: community and support (scenario-003)
-- Main lesson: Use blunt transparency and avoid social framing.
+## สิ่งที่เจอในแต่ละ persona
 
-### hopeful new graduate
-- Best pattern: consultative fit-first (scenario-005)
-- Fragile pattern: community and support (scenario-007)
-- Main lesson: Slow the pace and actively de-romanticize upside.
+### พนักงานออฟฟิศสายระวังตัว
+- แบบที่เหมาะที่สุด: แนวปรึกษา เน้นดูความเหมาะสมก่อน (scenario-001)
+- แบบที่เปราะ/เสี่ยงที่สุด: เน้นชุมชนและการซัพพอร์ต (scenario-003)
+- บทเรียนหลัก: ต้องใช้ความตรง ความโปร่งใส และหลีกเลี่ยง social framing
 
-### stay-at-home parent
-- Best pattern: consultative fit-first (scenario-009)
-- Fragile pattern: small-business framing (scenario-012)
-- Main lesson: Spell out schedule/energy cost early.
+### เด็กจบใหม่ที่มีความหวังสูง
+- แบบที่เหมาะที่สุด: แนวปรึกษา เน้นดูความเหมาะสมก่อน (scenario-005)
+- แบบที่เปราะ/เสี่ยงที่สุด: เน้นชุมชนและการซัพพอร์ต (scenario-007)
+- บทเรียนหลัก: ต้อง reset expectation ให้เร็ว อย่าปล่อยให้ตีความว่าทำง่ายหรือรวยไว
 
-### small business owner
-- Best pattern: consultative fit-first (scenario-013)
-- Fragile pattern: community and support (scenario-015)
-- Main lesson: Lead with economics and time demands; skip warm-up fluff.
+### คุณพ่อ/คุณแม่ที่ดูแลบ้าน
+- แบบที่เหมาะที่สุด: แนวปรึกษา เน้นดูความเหมาะสมก่อน (scenario-009)
+- แบบที่เปราะ/เสี่ยงที่สุด: กรอบคิดแบบธุรกิจย่อย (scenario-012)
+- บทเรียนหลัก: ต้องอธิบายเวลา พลังงาน และภาระ onboarding ให้เห็นภาพมากที่สุด
 
-## Recommended playbook changes
+### เจ้าของกิจการที่เวลาน้อย
+- แบบที่เหมาะที่สุด: แนวปรึกษา เน้นดูความเหมาะสมก่อน (scenario-013)
+- แบบที่เปราะ/เสี่ยงที่สุด: เน้นชุมชนและการซัพพอร์ต (scenario-015)
+- บทเรียนหลัก: ต้องกระชับ ตรง ประเด็น และชัดเรื่อง economics กับ workload
 
-- Keep the first 2 turns focused on fit, workload, and what the prospect does *not* want.
-- Default to written follow-up summaries rather than immediate calls-to-action.
-- Treat community/support language as optional seasoning, not the core pitch.
-- For vulnerable but interested personas, add an explicit expectation-reset script before discussing next steps.
+## ข้อแนะนำเชิงใช้งาน
 
-## Qualification rubric (v1)
+- 2 เทิร์นแรกควรใช้เพื่อเช็ก fit, ข้อกังวล, เวลา, และสิ่งที่อีกฝ่ายไม่อยากเจอ
+- ควรส่งสรุปเป็นข้อความหรือเอกสารให้ทบทวน มากกว่าปิดด้วย call-to-action ทันที
+- ถ้าบทสนทนามีกลิ่น social pressure หรือ belonging pressure ให้ลดน้ำหนักภาษาทันที
+- ถ้าอีกฝ่ายสนใจแต่ดูเปราะบางต่อภาพฝันเรื่องรายได้ ให้บังคับมี expectation-reset script
 
-- Qualify out if the prospect is highly allergic to social/recruiting dynamics and trust drops after clarification.
-- Continue carefully if interest is high but expectations are fragile; force explicit discussion of effort, costs, and selling discomfort.
-- Proceed to next step only when the prospect can restate the workload and still opts in without pressure.
+## เกณฑ์คัดกรองเวอร์ชันใช้งานจริง
+
+- ควรคัดออกทันที ถ้าอีกฝ่ายไม่สบายใจกับ dynamic การชวนคน/ดูแลเครือข่าย และความไว้ใจลดลงหลังอธิบายครบแล้ว
+- ควรไปต่อแบบระวัง ถ้ายังสนใจ แต่ยังไม่เข้าใจ effort, cost, หรือธรรมชาติของงาน
+- ควรนัดขั้นถัดไปได้ ก็ต่อเมื่ออีกฝ่ายสามารถอธิบายงานจริงกลับมาได้เอง โดยไม่ถูกเร่ง

@@ -1,9 +1,9 @@
 # scenario-015
 
-- Persona: small business owner
-- Strategy: community and support
-- Outcome: qualify_out
-- Pressure: moderate
-- Best move: explicitly said saying no is fine
-- Main caution: community framing risked sounding like social belonging pressure for low-tolerance personas
-- Next step: stop after confirming the time model is a mismatch
+- Persona: เจ้าของกิจการที่เวลาน้อย
+- Strategy: เน้นชุมชนและการซัพพอร์ต
+- Outcome: ควรคัดออกอย่างสุภาพ
+- Pressure: กลาง
+- จุดเด่น: มีการย้ำว่าปฏิเสธได้ ทำให้ไม่ดูบีบเกินไป
+- ข้อควรระวัง: ภาษาที่เน้น community เสี่ยงถูกตีความเป็นแรงกดดันเชิงการเป็นส่วนหนึ่งของกลุ่ม
+- Next step: หยุดเมื่อเห็นชัดว่า time model ไม่ตรงกัน

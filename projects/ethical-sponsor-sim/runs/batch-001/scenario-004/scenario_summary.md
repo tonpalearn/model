@@ -1,9 +1,9 @@
 # scenario-004
 
-- Persona: skeptical office worker
-- Strategy: small-business framing
-- Outcome: cautious_follow_up
-- Pressure: low
-- Best move: named the required skills and effort in blunt business terms
-- Main caution: any vague income upside language immediately reduced credibility
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: พนักงานออฟฟิศสายระวังตัว
+- Strategy: กรอบคิดแบบธุรกิจย่อย
+- Outcome: ติดตามต่อได้แบบระวัง
+- Pressure: ต่ำ
+- จุดเด่น: พูดตรงเรื่องทักษะและ effort ที่ต้องใช้ ทำให้ภาพชัด
+- ข้อควรระวัง: ถ้ามีคำพูดแนวรายได้สวยๆ แบบคลุมเครือ ความน่าเชื่อถือจะตกทันที
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

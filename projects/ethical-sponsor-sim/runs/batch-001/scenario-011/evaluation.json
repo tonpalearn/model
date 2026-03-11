@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-011",
+  "pressure_band": "กลาง",
+  "outcome": "ติดตามต่อได้แบบระวัง",
+  "recommended_next_step": "ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ",
   "scores": {
     "trust_built": 7.5,
     "clarity": 6.0,
@@ -9,16 +12,13 @@
     "next_step_quality": 6.0,
     "ethical_continuation": 6.0
   },
-  "pressure_band": "moderate",
-  "outcome": "cautious_follow_up",
-  "helpful_phrases": [
-    "explicitly said saying no is fine",
-    "discussion of schedule fragmentation and energy cost made the conversation feel realistic"
+  "helpful_points": [
+    "มีการย้ำว่าปฏิเสธได้ ทำให้ไม่ดูบีบเกินไป",
+    "การพูดเรื่องเวลาแบบเป็นช่วงๆ และพลังงานที่ต้องใช้ ทำให้บทสนทนาดูสมจริง"
   ],
-  "harmful_phrases": [
-    "community framing risked sounding like social belonging pressure for low-tolerance personas",
-    "unclear onboarding time estimates created hesitation"
+  "caution_points": [
+    "ภาษาที่เน้น community เสี่ยงถูกตีความเป็นแรงกดดันเชิงการเป็นส่วนหนึ่งของกลุ่ม",
+    "ถ้าอธิบายเวลา onboarding ไม่ชัด จะทำให้ลังเลทันที"
   ],
-  "turning_points": [],
-  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+  "turning_points": []
 }

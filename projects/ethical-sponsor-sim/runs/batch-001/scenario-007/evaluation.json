@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-007",
+  "pressure_band": "กลาง",
+  "outcome": "ไปต่อได้ แต่ต้องมี guardrails",
+  "recommended_next_step": "ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ",
   "scores": {
     "trust_built": 6.5,
     "clarity": 6.0,
@@ -9,15 +12,12 @@
     "next_step_quality": 5.5,
     "ethical_continuation": 6.0
   },
-  "pressure_band": "moderate",
-  "outcome": "continue_with_guardrails",
-  "helpful_phrases": [
-    "explicitly said saying no is fine"
+  "helpful_points": [
+    "มีการย้ำว่าปฏิเสธได้ ทำให้ไม่ดูบีบเกินไป"
   ],
-  "harmful_phrases": [
-    "community framing risked sounding like social belonging pressure for low-tolerance personas",
-    "vulnerability to hopeful framing means the sponsor must slow the pace and de-romanticize earnings"
+  "caution_points": [
+    "ภาษาที่เน้น community เสี่ยงถูกตีความเป็นแรงกดดันเชิงการเป็นส่วนหนึ่งของกลุ่ม",
+    "persona นี้มีความหวังสูง จึงต้องชะลอจังหวะและลดภาพฝันเรื่องรายได้เสมอ"
   ],
-  "turning_points": [],
-  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+  "turning_points": []
 }

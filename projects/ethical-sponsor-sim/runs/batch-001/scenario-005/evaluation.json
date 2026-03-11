@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-005",
+  "pressure_band": "ต่ำ",
+  "outcome": "ไปต่อได้",
+  "recommended_next_step": "ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ",
   "scores": {
     "trust_built": 8.0,
     "clarity": 7.5,
@@ -9,17 +12,14 @@
     "next_step_quality": 6.5,
     "ethical_continuation": 8.0
   },
-  "pressure_band": "low",
-  "outcome": "continue",
-  "helpful_phrases": [
-    "opened by asking about goals before pitching",
-    "stated early that the model is not a fit for everyone"
+  "helpful_points": [
+    "เปิดบทสนทนาด้วยการถามเป้าหมายก่อน ไม่รีบ pitch",
+    "บอกชัดตั้งแต่ต้นว่าโอกาสนี้ไม่เหมาะกับทุกคน"
   ],
-  "harmful_phrases": [
-    "vulnerability to hopeful framing means the sponsor must slow the pace and de-romanticize earnings"
+  "caution_points": [
+    "persona นี้มีความหวังสูง จึงต้องชะลอจังหวะและลดภาพฝันเรื่องรายได้เสมอ"
   ],
   "turning_points": [
-    "trust increased when the sponsor surfaced workload and social requirements early"
-  ],
-  "recommended_next_step": "send a written summary and invite the prospect to review privately before deciding"
+    "ความไว้ใจเพิ่มขึ้นเมื่อ sponsor พูดเรื่องภาระงานและความต้องใช้คนให้ฟังเร็ว"
+  ]
 }

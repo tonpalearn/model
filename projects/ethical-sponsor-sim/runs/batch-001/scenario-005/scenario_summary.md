@@ -1,9 +1,9 @@
 # scenario-005
 
-- Persona: hopeful new graduate
-- Strategy: consultative fit-first
-- Outcome: continue
-- Pressure: low
-- Best move: opened by asking about goals before pitching
-- Main caution: vulnerability to hopeful framing means the sponsor must slow the pace and de-romanticize earnings
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: เด็กจบใหม่ที่มีความหวังสูง
+- Strategy: แนวปรึกษา เน้นดูความเหมาะสมก่อน
+- Outcome: ไปต่อได้
+- Pressure: ต่ำ
+- จุดเด่น: เปิดบทสนทนาด้วยการถามเป้าหมายก่อน ไม่รีบ pitch
+- ข้อควรระวัง: persona นี้มีความหวังสูง จึงต้องชะลอจังหวะและลดภาพฝันเรื่องรายได้เสมอ
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

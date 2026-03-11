@@ -1,73 +1,77 @@
 [
   {
     "id": "p-office-skeptical-01",
-    "label": "skeptical office worker",
-    "communication_style": "polite but skeptical",
+    "label_th": "พนักงานออฟฟิศสายระวังตัว",
+    "label_en": "skeptical office worker",
+    "communication_style": "สุภาพแต่ระแวง",
     "motivations": [
-      "extra income",
-      "more flexibility"
+      "อยากมีรายได้เสริม",
+      "อยากมีความยืดหยุ่นมากขึ้น"
     ],
     "concerns": [
-      "reputation risk",
-      "hidden costs",
-      "pressure from uplines"
+      "ภาพลักษณ์/ชื่อเสียง",
+      "ต้นทุนแฝง",
+      "แรงกดดันจาก upline"
     ],
-    "trust_threshold": "high",
-    "sales_tolerance": "low",
-    "time_availability": "evenings only",
-    "notes": "dislikes vague claims and social pressure"
+    "trust_threshold": "สูง",
+    "sales_tolerance": "ต่ำ",
+    "time_availability": "ว่างเฉพาะตอนเย็น",
+    "notes": "ไม่ชอบคำพูดลอยๆ และไม่ชอบแรงกดดันทางสังคม"
   },
   {
     "id": "p-newgrad-hopeful-02",
-    "label": "hopeful new graduate",
-    "communication_style": "friendly and curious",
+    "label_th": "เด็กจบใหม่ที่มีความหวังสูง",
+    "label_en": "hopeful new graduate",
+    "communication_style": "เป็นมิตรและอยากรู้",
     "motivations": [
-      "earn quickly",
-      "sense of momentum"
+      "อยากหาเงินได้เร็ว",
+      "อยากรู้สึกว่าชีวิตเดินหน้า"
     ],
     "concerns": [
-      "fear of being misled",
-      "uncertainty about selling skills"
+      "กลัวถูกหลอก",
+      "ไม่มั่นใจทักษะการขาย"
     ],
-    "trust_threshold": "medium",
-    "sales_tolerance": "medium",
-    "time_availability": "high",
-    "notes": "high interest but vulnerable to unrealistic expectations"
+    "trust_threshold": "กลาง",
+    "sales_tolerance": "กลาง",
+    "time_availability": "ค่อนข้างสูง",
+    "notes": "สนใจง่าย แต่เสี่ยงตั้งความหวังเกินจริง"
   },
   {
     "id": "p-parent-home-03",
-    "label": "stay-at-home parent",
-    "communication_style": "warm but practical",
+    "label_th": "คุณพ่อ/คุณแม่ที่ดูแลบ้าน",
+    "label_en": "stay-at-home parent",
+    "communication_style": "อบอุ่นแต่ปฏิบัติจริง",
     "motivations": [
-      "income from home",
-      "flexible schedule"
+      "อยากมีรายได้จากบ้าน",
+      "อยากได้เวลาที่ยืดหยุ่น"
     ],
     "concerns": [
-      "upfront costs",
-      "time-energy balance",
-      "pressure to recruit friends"
+      "ค่าเริ่มต้น",
+      "เวลาและพลังงานไม่พอ",
+      "ไม่อยากกดดันเพื่อนหรือคนรู้จัก"
     ],
-    "trust_threshold": "high",
-    "sales_tolerance": "low",
-    "time_availability": "fragmented",
-    "notes": "needs concrete explanation of workload and support"
+    "trust_threshold": "สูง",
+    "sales_tolerance": "ต่ำ",
+    "time_availability": "เวลาแตกเป็นช่วงๆ",
+    "notes": "ต้องการคำอธิบายชัดเจนเรื่องภาระงานและการซัพพอร์ต"
   },
   {
     "id": "p-owner-time-poor-04",
-    "label": "small business owner",
-    "communication_style": "direct and impatient",
+    "label_th": "เจ้าของกิจการที่เวลาน้อย",
+    "label_en": "small business owner",
+    "communication_style": "ตรงและใจร้อน",
     "motivations": [
-      "scalable side opportunity",
-      "network leverage"
+      "อยากได้ side opportunity ที่ต่อยอดได้",
+      "อยากใช้ leverage จาก network"
     ],
     "concerns": [
-      "wasted time",
-      "weak economics",
-      "dependency on recruiting"
+      "เสียเวลา",
+      "เศรษฐศาสตร์ไม่คุ้ม",
+      "พึ่งการ recruit มากเกินไป"
     ],
-    "trust_threshold": "high",
-    "sales_tolerance": "medium",
-    "time_availability": "low",
-    "notes": "prefers blunt qualification over warm social framing"
+    "trust_threshold": "สูง",
+    "sales_tolerance": "กลาง",
+    "time_availability": "ต่ำ",
+    "notes": "ชอบการคัดกรองแบบตรงไปตรงมา มากกว่าการชวนแบบอบอุ่น"
   }
 ]

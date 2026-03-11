@@ -1,9 +1,9 @@
 # scenario-003
 
-- Persona: skeptical office worker
-- Strategy: community and support
-- Outcome: qualify_out
-- Pressure: moderate
-- Best move: explicitly said saying no is fine
-- Main caution: community framing risked sounding like social belonging pressure for low-tolerance personas
-- Next step: close respectfully; this persona is too sensitive to social-pressure cues
+- Persona: พนักงานออฟฟิศสายระวังตัว
+- Strategy: เน้นชุมชนและการซัพพอร์ต
+- Outcome: ควรคัดออกอย่างสุภาพ
+- Pressure: กลาง
+- จุดเด่น: มีการย้ำว่าปฏิเสธได้ ทำให้ไม่ดูบีบเกินไป
+- ข้อควรระวัง: ภาษาที่เน้น community เสี่ยงถูกตีความเป็นแรงกดดันเชิงการเป็นส่วนหนึ่งของกลุ่ม
+- Next step: ปิดบทสนทนาอย่างสุภาพ เพราะ persona นี้แพ้แรงกดดันเชิงสังคมชัดเจน

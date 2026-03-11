@@ -1,5 +1,8 @@
 {
   "scenario_id": "scenario-016",
+  "pressure_band": "ต่ำ",
+  "outcome": "ไปต่อได้",
+  "recommended_next_step": "ส่ง memo สั้นๆ เรื่อง unit economics + workload แล้วนัด Q&A แบบสั้น",
   "scores": {
     "trust_built": 6.5,
     "clarity": 8.5,
@@ -9,16 +12,13 @@
     "next_step_quality": 6.0,
     "ethical_continuation": 6.0
   },
-  "pressure_band": "low",
-  "outcome": "continue",
-  "helpful_phrases": [
-    "named the required skills and effort in blunt business terms"
+  "helpful_points": [
+    "พูดตรงเรื่องทักษะและ effort ที่ต้องใช้ ทำให้ภาพชัด"
   ],
-  "harmful_phrases": [
-    "too much warm-up felt inefficient and reduced engagement"
+  "caution_points": [
+    "ถ้า warm-up เยอะเกินไป จะถูกมองว่าเสียเวลาและ engagement จะลดลง"
   ],
   "turning_points": [
-    "fit became clearer once the sponsor described the work as a people-driven micro-business"
-  ],
-  "recommended_next_step": "send a concise economics + workload memo, then short follow-up Q&A"
+    "ความเหมาะสมเห็นชัดขึ้นเมื่อ framing เป็นธุรกิจย่อยที่ต้องลงแรงจริง"
+  ]
 }

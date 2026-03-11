@@ -1,9 +1,9 @@
 # scenario-007
 
-- Persona: hopeful new graduate
-- Strategy: community and support
-- Outcome: continue_with_guardrails
-- Pressure: moderate
-- Best move: explicitly said saying no is fine
-- Main caution: community framing risked sounding like social belonging pressure for low-tolerance personas
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: เด็กจบใหม่ที่มีความหวังสูง
+- Strategy: เน้นชุมชนและการซัพพอร์ต
+- Outcome: ไปต่อได้ แต่ต้องมี guardrails
+- Pressure: กลาง
+- จุดเด่น: มีการย้ำว่าปฏิเสธได้ ทำให้ไม่ดูบีบเกินไป
+- ข้อควรระวัง: ภาษาที่เน้น community เสี่ยงถูกตีความเป็นแรงกดดันเชิงการเป็นส่วนหนึ่งของกลุ่ม
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

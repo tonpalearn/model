@@ -1,9 +1,9 @@
 # scenario-010
 
-- Persona: stay-at-home parent
-- Strategy: product-first educational
-- Outcome: continue
-- Pressure: low
-- Best move: grounded the discussion in a real product category before talking about the business
-- Main caution: unclear onboarding time estimates created hesitation
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: คุณพ่อ/คุณแม่ที่ดูแลบ้าน
+- Strategy: เริ่มจากสินค้าแบบให้ความรู้
+- Outcome: ไปต่อได้
+- Pressure: ต่ำ
+- จุดเด่น: คุยเรื่องสินค้าที่จับต้องได้ก่อน ทำให้บทสนทนาดูจริงและไม่ลอย
+- ข้อควรระวัง: ถ้าอธิบายเวลา onboarding ไม่ชัด จะทำให้ลังเลทันที
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

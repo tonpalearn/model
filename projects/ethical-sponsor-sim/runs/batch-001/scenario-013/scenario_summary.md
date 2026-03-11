@@ -1,9 +1,9 @@
 # scenario-013
 
-- Persona: small business owner
-- Strategy: consultative fit-first
-- Outcome: cautious_follow_up
-- Pressure: low
-- Best move: opened by asking about goals before pitching
-- Main caution: too much warm-up felt inefficient and reduced engagement
-- Next step: send a written summary and invite the prospect to review privately before deciding
+- Persona: เจ้าของกิจการที่เวลาน้อย
+- Strategy: แนวปรึกษา เน้นดูความเหมาะสมก่อน
+- Outcome: ติดตามต่อได้แบบระวัง
+- Pressure: ต่ำ
+- จุดเด่น: เปิดบทสนทนาด้วยการถามเป้าหมายก่อน ไม่รีบ pitch
+- ข้อควรระวัง: ถ้า warm-up เยอะเกินไป จะถูกมองว่าเสียเวลาและ engagement จะลดลง
+- Next step: ส่งสรุปเป็นลายลักษณ์อักษรให้ทบทวนเองก่อน แล้วค่อยตัดสินใจ

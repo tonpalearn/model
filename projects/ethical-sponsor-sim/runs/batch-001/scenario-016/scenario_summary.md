@@ -1,9 +1,9 @@
 # scenario-016
 
-- Persona: small business owner
-- Strategy: small-business framing
-- Outcome: continue
-- Pressure: low
-- Best move: named the required skills and effort in blunt business terms
-- Main caution: too much warm-up felt inefficient and reduced engagement
-- Next step: send a concise economics + workload memo, then short follow-up Q&A
+- Persona: เจ้าของกิจการที่เวลาน้อย
+- Strategy: กรอบคิดแบบธุรกิจย่อย
+- Outcome: ไปต่อได้
+- Pressure: ต่ำ
+- จุดเด่น: พูดตรงเรื่องทักษะและ effort ที่ต้องใช้ ทำให้ภาพชัด
+- ข้อควรระวัง: ถ้า warm-up เยอะเกินไป จะถูกมองว่าเสียเวลาและ engagement จะลดลง
+- Next step: ส่ง memo สั้นๆ เรื่อง unit economics + workload แล้วนัด Q&A แบบสั้น

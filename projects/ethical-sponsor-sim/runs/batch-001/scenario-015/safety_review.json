@@ -1,12 +1,12 @@
 {
   "scenario_id": "scenario-015",
-  "manipulation_risk": "moderate",
-  "ambiguous_earning_claim": "none",
-  "hidden_effort_risk": "low",
-  "hidden_cost_risk": "low",
-  "social_pressure_risk": "moderate",
-  "urgency_or_coercion_risk": "none",
+  "manipulation_risk": "กลาง",
+  "ambiguous_earning_claim": "ไม่พบ",
+  "hidden_effort_risk": "ต่ำ",
+  "hidden_cost_risk": "ต่ำ",
+  "social_pressure_risk": "กลาง",
+  "urgency_or_coercion_risk": "ไม่พบ",
   "flags": [
-    "belonging-pressure risk if support language becomes identity-based"
+    "มีความเสี่ยงเรื่อง belonging pressure ถ้าใช้ภาษาผูกกับตัวตนหรือความเป็นพวกเดียวกัน"
   ]
 }
