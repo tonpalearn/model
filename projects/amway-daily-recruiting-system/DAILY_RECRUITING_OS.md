@@ -18,18 +18,25 @@
 - โพสต์ 1 ชิ้นแบบ soft CTA
 - ตอบ comment / DM ที่เกี่ยวข้อง
 
-### Block C: Outreach - 20 นาที
-- ส่ง warm opener 10-15 คน
-- เน้นคนรู้จัก, คนเคยคุย, คน engage content
+### Block C: Group prospecting - 15 นาที
+- ตรวจ 2-4 กลุ่มคุณภาพ
+- log qualified names 5-10 ชื่อ
+- ทำ soft engagement 3-5 interactions
+- ส่ง contextual DM 2-5 คนเมื่อมีบริบทจริง
 
-### Block D: Follow-up - 15 นาที
+### Block D: Outreach - 15-20 นาที
+- ส่ง warm opener 5-10 คน
+- เน้นคนรู้จัก, คนเคยคุย, คน engage content
+- ถ้ามี group DMs แล้ว ให้ลด warm outreach ลงเพื่อคุมคุณภาพ
+
+### Block E: Follow-up - 15 นาที
 - ทำ follow-up 5-10 เคสตามคิว
 
-### Block E: Qualification / Invite - 15 นาที
+### Block F: Qualification / Invite - 15 นาที
 - ถามคัดกรอง 1-2 ชั้น
 - invite 1-3 คนที่เหมาะ
 
-### Block F: Review - 5 นาที
+### Block G: Review - 5 นาที
 - กรอก daily scoreboard
 - เขียน lesson 1 บรรทัด
 
@@ -37,11 +44,12 @@
 ### รอบเช้า
 - pipeline triage 15 นาที
 - content 30 นาที
-- outbound set 1 = 10-15 คน
+- Facebook Group scan = 15-20 นาที
+- outbound set 1 = 8-12 คน
 
 ### รอบบ่าย
 - qualification chats 20-30 นาที
-- outbound set 2 = 10-15 คน
+- group contextual DMs / warm outreach set 2 = 8-12 คน
 - follow-up wave = 10-15 เคส
 
 ### รอบเย็น
@@ -58,8 +66,9 @@
 1. คนที่ตอบแล้วแต่ยังไม่ได้ next step
 2. คนที่ qualified แล้วแต่ยังไม่ได้ invite
 3. follow-up ที่ถึงกำหนด
-4. outreach ใหม่
-5. content optimization
+4. group prospects ที่มีสัญญาณแรงและมีบริบทจริง
+5. outreach ใหม่
+6. content optimization
 
 ## Suggested day plan
 ### จันทร์-ศุกร์
@@ -75,6 +84,7 @@
 
 ## End-of-day checklist
 - [ ] บันทึก new leads
+- [ ] update Facebook Group signal tracker / outreach queue
 - [ ] update stage ทุกคนที่คุยวันนี้
 - [ ] ตั้ง next action date
 - [ ] กรอก scoreboard

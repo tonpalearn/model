@@ -19,11 +19,13 @@
 - `DAILY_RECRUITING_OS.md` ระบบปฏิบัติการรายวัน
 - `CONTENT_ATTRACTION_SYSTEM.md` ระบบ content เพื่อดึงบทสนทนาเข้า
 - `OUTREACH_SYSTEM.md` ระบบ warm outreach
+- `FACEBOOK_GROUP_PROSPECTING_SOP.md` ระบบหา prospect จาก Facebook Group แบบ signal-based
 - `QUALIFICATION_FLOW.md` ระบบคัดกรอง
 - `FOLLOWUP_SYSTEM.md` ระบบติดตามผล
 - `INVITE_AND_CONVERSION_SYSTEM.md` ระบบ invite ไป call / business conversation
 - `KPI_MODEL.md` ตัวชี้วัด
 - `COMPLIANCE_GUARDRAILS.md` รั้วความเสี่ยง
+- `MESSAGING_AUTOMATION_OPTIONS.md` คู่มือ automation ที่ทำได้/ไม่ควรทำ
 - `WORKFLOWS.md` workflow ใช้งานจริง
 - `templates/` ข้อความและสคริปต์พร้อมใช้
 - `trackers/` tracker พร้อมกรอก
@@ -33,13 +35,16 @@
 2. เปิด `DAILY_RECRUITING_OS.md` แล้วเลือกโหมด
    - Starter Mode = ทำคนเดียวแบบเบาแต่ต่อเนื่อง
    - Expanded Mode = เพิ่มปริมาณงานและ review
-3. คัดลอกไฟล์ใน `trackers/` ไปใช้เป็น working copy ประจำวัน/สัปดาห์
-4. ใช้ template ใน `templates/` ให้ AI ช่วย personalize ก่อนส่งทุกครั้ง
+3. อ่าน `FACEBOOK_GROUP_PROSPECTING_SOP.md` ถ้าจะใช้ช่องทาง Facebook Group เพื่อคัดรายชื่อแบบไม่สแปม
+4. อ่าน `MESSAGING_AUTOMATION_OPTIONS.md` ก่อนตั้งระบบ DM / reminder / ManyChat / CRM ใด ๆ
+5. คัดลอกไฟล์ใน `trackers/` ไปใช้เป็น working copy ประจำวัน/สัปดาห์
+6. ใช้ template ใน `templates/` ให้ AI ช่วย personalize ก่อนส่งทุกครั้ง
 
 ## Starter Mode
 เหมาะสำหรับทำคนเดียว 60-90 นาที/วัน
 - คอนเทนต์ 1 ชิ้น/วัน
-- warm outreach 10-15 คน/วัน
+- ตรวจ Facebook Group 2-4 กลุ่ม/วัน
+- contextual outbound 7-15 คน/วัน (รวม group DM + warm outreach)
 - follow-up 5-10 เคส/วัน
 - invite 1-3 คน/วัน
 - review scoreboard 10 นาทีท้ายวัน
@@ -47,7 +52,8 @@
 ## Expanded Mode
 เหมาะเมื่อเริ่มมี pipeline ชัดเจน 2-3 ชั่วโมง/วัน
 - คอนเทนต์ 1-2 ชิ้น/วัน + story/short update
-- warm outreach 20-30 คน/วัน
+- ตรวจ Facebook Group 5-8 กลุ่ม/วัน
+- contextual outbound 15-25 คน/วัน
 - follow-up 15-25 เคส/วัน
 - invite 3-5 คน/วัน
 - weekly review เชิงสถิติ + ปรับข้อความ + ปรับ ICP
@@ -61,6 +67,7 @@
 ### Templates
 - soft inbound CTA posts
 - warm opener messages
+- facebook group signal scorecard
 - follow-up messages by stage
 - qualification questions
 - invite-to-call scripts
@@ -69,6 +76,7 @@
 
 ### Trackers
 - recruiting lead tracker
+- facebook group signal tracker
 - daily recruiting scoreboard
 - weekly pipeline review
 - outreach queue

@@ -3,6 +3,11 @@
 - Date:
 - Mode: Starter / Expanded
 - Main content published:
+- Facebook groups checked:
+- Qualified names logged:
+- Watchlist added:
+- Soft engagements done:
+- Contextual group DMs sent:
 - New outreach sent:
 - Follow-ups completed:
 - Replies received:
