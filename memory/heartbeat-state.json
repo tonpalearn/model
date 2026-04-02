@@ -4,6 +4,9 @@
     "calendar": null,
     "weather": null,
     "mentions": null,
-    "taskReview": 1775098800
+    "taskReview": 1775150880
+  },
+  "preferences": {
+    "taskFollowupHours": 4
   }
 }
