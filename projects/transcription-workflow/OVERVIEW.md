@@ -6,7 +6,9 @@ A simple workflow for turning audio/video/local media into transcript-like text 
 
 ## Primary method
 
-Use the `summarize` CLI as the first-line tool for local files and media when transcript extraction or summarization is needed.
+Use `whisper` as the first-line tool for local audio transcription.
+
+Use `summarize` as a secondary tool when the goal is quick summary/extraction rather than direct transcription.
 
 ## Default workflow
 
