@@ -1,4 +1,19 @@
 # HEARTBEAT.md
 
-# Default: keep quiet unless there's something actually worth surfacing.
-# If later needed, add a compact checklist here for periodic checks.
+เมื่อตรวจ heartbeat ให้ใช้กติกานี้:
+
+1. ถ้าไม่มีสิ่งสำคัญใหม่จริง ๆ ให้ตอบ `HEARTBEAT_OK`
+2. อย่าทักเพื่อทัก
+3. ถ้ามีเรื่องควรแจ้ง ให้แจ้งแบบสั้น กระชับ และ actionable
+
+## Lightweight checklist
+
+เช็กเป็นรอบ ๆ แบบเบา ๆ เท่านั้น:
+- ดูว่าใน `memory/open-tasks.md` มีงานค้างที่ควร follow up หรือไม่
+- ถ้ามี deadline ใกล้ / เรื่องตกหล่น / สิ่งที่ควรเตือน ให้แจ้ง
+- ถ้าไม่มีอะไรใหม่ อย่าสร้างงานเอง
+
+## Quiet-hours mindset
+
+- ถ้าดึกหรือไม่มีความเร่งด่วน ให้เงียบไว้
+- ให้ความสำคัญกับคุณภาพมากกว่าความถี่
