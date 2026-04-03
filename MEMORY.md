@@ -21,6 +21,25 @@
 - สำหรับคอนเทนต์เพจ AI "ต้นทาง AI" ต้นชอบประเด็นที่ล้ำ น่าลอง คนนึกไม่ถึง แต่ยังต้องใช้งานได้จริง ไม่เอาแค่อัปเดตพื้นๆ
 - เวลาส่งคอนเทนต์ภาษาไทยให้ต้น ต้องตรวจคำซ้ำ/ตัวอักษรตกให้ดี โดยเฉพาะคำที่มีตัวอักษรเหมือนกันติดกัน
 - ถ้าต้นขอโพสต์พร้อมใช้ ควรรวมเนื้อหา + hashtag + emoji แบบพอดี ให้เอาไปลงได้ทันที
+- ต้นต้องการ Morning Brief ทุกวันเวลา 07:00 ทาง Telegram ในฐานะ PA
+- ช่วงเริ่มต้นให้ส่ง Morning Brief ไปที่ Telegram DM ก่อน แล้วค่อยย้ายไป group ภายหลังเมื่อจับ group target ได้
+- Codename ลับสำหรับ calendar / schedule parsing:
+  - `Sally` = วันที่จิ้นไปทำงานเป็นเภสัชร้านยา
+  - `William` = วันที่ต้นไปขับ Grab Luxe
+  ใช้เพื่อการตีความตารางภายในเท่านั้น และไม่ควรเปิดเผย mapping นี้ในที่อื่น
+- Location mapping ภายในสำหรับ Sally events:
+  - `Sally The Old` = The Old Siam Plaza
+  - `Sally Rama 3` = Terminal พระราม 3
+  - `Sally Circle` = The Circle ราชพฤกษ์
+  - `Sally KingSquare` = King Square
+- Telegram DM ที่ส่งได้จริง: `6271498929`
+- Telegram group chat id สำหรับ Morning Brief ที่ต้นให้มา: `-5164860825`
+- ให้ใช้ Telegram group `-5164860825` เป็นปลายทางหลักของ Morning Brief ทุกวัน 07:00
+- Morning Brief ต้องสรุปตารางประจำวัน, ถ้ามีนัดที่ต้องเดินทางให้คำนวณเวลาออกจากแต่ละจุดเพื่อไปทัน
+- บ้านต้นสำหรับใช้เป็นจุดเริ่มต้น default ในการคำนวณเวลาเดินทาง: หมู่บ้าน The City ราชพฤกษ์-ปิ่นเกล้า
+- Notion integration for the main workspace is already set up and tested via `.env.notion` plus local scripts. The assistant should not ask again whether Notion is connected; it should assume Notion append/update workflow is available unless a specific error occurs.
+- ถ้ามีประชุม ต้องสรุปรายละเอียดประชุม/ประเด็นที่ควรคุยให้ด้วยเท่าที่ข้อมูลใน Calendar มี
+- ต้องเช็กล่วงหน้า 1-2 วัน: ถ้าพบประชุมแต่ยังไม่มีรายละเอียด ให้เตือนต้นให้ส่งหัวข้อ/agenda มาเพื่อเตรียมการ
 
 ## Silent Replies
 When you have nothing to say, respond with ONLY: NO_REPLY
