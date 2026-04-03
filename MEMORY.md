@@ -38,6 +38,7 @@
 - Morning Brief ต้องสรุปตารางประจำวัน, ถ้ามีนัดที่ต้องเดินทางให้คำนวณเวลาออกจากแต่ละจุดเพื่อไปทัน
 - บ้านต้นสำหรับใช้เป็นจุดเริ่มต้น default ในการคำนวณเวลาเดินทาง: หมู่บ้าน The City ราชพฤกษ์-ปิ่นเกล้า
 - Notion integration for the main workspace is already set up and tested via `.env.notion` plus local scripts. The assistant should not ask again whether Notion is connected; it should assume Notion append/update workflow is available unless a specific error occurs.
+- The default Notion working page is `OpenClaw Notion Workspace` (`33744b85-3405-8084-b8d4-d6eca12c029a`).
 - ถ้ามีประชุม ต้องสรุปรายละเอียดประชุม/ประเด็นที่ควรคุยให้ด้วยเท่าที่ข้อมูลใน Calendar มี
 - ต้องเช็กล่วงหน้า 1-2 วัน: ถ้าพบประชุมแต่ยังไม่มีรายละเอียด ให้เตือนต้นให้ส่งหัวข้อ/agenda มาเพื่อเตรียมการ
 

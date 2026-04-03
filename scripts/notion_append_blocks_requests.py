@@ -8,10 +8,10 @@ if len(sys.argv) < 2:
 md_path = sys.argv[1]
 if not TOKEN:
     print('Missing NOTION_TOKEN', file=sys.stderr); sys.exit(2)
-m = re.search(r'([0-9a-fA-F]{32})', PAGE_URL.replace('-', ''))
-if not m:
+matches = re.findall(r'([0-9a-fA-F]{32})', PAGE_URL)
+if not matches:
     print('Could not parse page id from NOTION_PAGE_URL', file=sys.stderr); sys.exit(2)
-raw = m.group(1).lower()
+raw = matches[-1].lower()
 page_id = f"{raw[0:8]}-{raw[8:12]}-{raw[12:16]}-{raw[16:20]}-{raw[20:32]}"
 text = open(md_path, 'r', encoding='utf-8').read().splitlines()
 children=[]
