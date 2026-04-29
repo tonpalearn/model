@@ -33,6 +33,7 @@ Audience simulation and multi-agent content review workflow for evaluating how d
 - What works / what loses attention
 - Persona-specific recommendations
 - Specialist recommendations
+- Aggregate scoring across hook, clarity, trust, attention, and conversion
 - Final merged summary from lead reviewer
 - Suggested revision direction for text, format, image, and CTA
 
@@ -55,6 +56,8 @@ python3 main.py <content_file>
 python3 main.py <content_file> --title "Your content title"
 python3 main.py <content_file> --target "Thai SME founders"
 python3 main.py <content_file> --format article
+python3 main.py <content_file> --format social_post
+python3 main.py <content_file> --format ad_copy
 ```
 
 ## Current mode

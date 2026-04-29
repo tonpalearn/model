@@ -7,7 +7,7 @@ import yaml
 from review_engine import persona_review, specialist_review, lead_summary
 
 
-def load_personas(path):
+def load_yaml(path):
     with open(path, 'r', encoding='utf-8') as f:
         return yaml.safe_load(f)
 
@@ -25,6 +25,10 @@ def render_markdown_report(meta, persona_reviews, specialist_reviews, lead):
     lines.append("")
     lines.append("## Lead Summary")
     lines.append(lead['executive_summary'])
+    lines.append("")
+    lines.append("### Aggregate Scores")
+    for k, v in lead.get('aggregate_scores', {}).items():
+        lines.append(f"- {k.title()}: {v}/10")
     lines.append("")
     lines.append("### Strongest Assets")
     for x in lead['strongest_assets']:
@@ -56,6 +60,7 @@ def render_markdown_report(meta, persona_reviews, specialist_reviews, lead):
         lines.append(f"- Understood value: {r['understood_value']}")
         lines.append(f"- Trust level: {r['trust_level']}")
         lines.append(f"- Likelihood to continue: {r['likelihood_to_continue']}")
+        lines.append(f"- Scores: hook {r['scores']['hook']}/10, clarity {r['scores']['clarity']}/10, trust {r['scores']['trust']}/10, attention {r['scores']['attention']}/10, conversion {r['scores']['conversion']}/10")
         lines.append("- What works:")
         for x in r['what_works']:
             lines.append(f"  - {x}")
@@ -97,11 +102,15 @@ def main():
     args = parser.parse_args()
 
     root = Path(__file__).parent
-    cfg = load_personas(root / 'personas.yaml')
+    cfg = load_yaml(root / 'personas.yaml')
+    preset_cfg = load_yaml(root / 'presets.yaml')
     text = read_content(args.content_file)
 
+    chosen_format = args.format or 'article'
+    preset = preset_cfg.get('presets', {}).get(chosen_format, {})
+
     persona_reviews = [
-        persona_review(p, text, title=args.title, target=args.target, content_format=args.format)
+        persona_review(p, text, title=args.title, target=args.target, content_format=args.format, preset=preset)
         for p in cfg['personas']
     ]
     specialist_reviews = [
@@ -119,6 +128,7 @@ def main():
             'target': args.target,
             'format': args.format or 'auto',
             'source_file': str(args.content_file),
+            'preset': preset,
         },
         'persona_reviews': persona_reviews,
         'specialist_reviews': specialist_reviews,

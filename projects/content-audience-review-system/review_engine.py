@@ -50,7 +50,7 @@ def likely_content_type(text, forced=None):
     return 'article'
 
 
-def persona_review(persona, text, title='', target='general audience', content_format=None):
+def persona_review(persona, text, title='', target='general audience', content_format=None, preset=None):
     hook_score = score_hook(text)
     tone = detect_tone(text)
     content_type = likely_content_type(text, content_format)
@@ -116,6 +116,16 @@ def persona_review(persona, text, title='', target='general audience', content_f
     likelihood = 'high' if len(works) > len(loses) else 'medium' if len(works) == len(loses) else 'low'
     suggested_hook = f"ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ {persona['label']} และเชื่อมไปยังประโยชน์หลักทันที"
 
+    hook_score_10 = min(10, max(3, hook_score * 3))
+    clarity_score_10 = 7 if 'พอเข้าใจ' in understood_value else 4
+    trust_score_10 = 8 if trust_level == 'medium-high' else 6 if trust_level == 'medium' else 4
+    attention_score_10 = 8 if likelihood == 'high' else 6 if likelihood == 'medium' else 4
+    conversion_score_10 = 6
+    if any(x in text.lower() for x in ['ทัก', 'สมัคร', 'ซื้อ', 'อ่านต่อ', 'คลิก']):
+        conversion_score_10 = 7
+    if any('CTA' in x for x in change):
+        conversion_score_10 = 5
+
     return {
         'persona_id': persona['id'],
         'persona_label': persona['label'],
@@ -136,6 +146,13 @@ def persona_review(persona, text, title='', target='general audience', content_f
         'detected_terms': top_terms,
         'detected_tone': tone,
         'content_type': content_type,
+        'scores': {
+            'hook': hook_score_10,
+            'clarity': clarity_score_10,
+            'trust': trust_score_10,
+            'attention': attention_score_10,
+            'conversion': conversion_score_10,
+        }
     }
 
 
@@ -171,6 +188,11 @@ def specialist_review(specialist, text):
             changes.append('เพิ่ม CTA ที่ชัดว่าอยากให้คนดูทำอะไรต่อ')
         risks.append('ถ้า value proposition ยังไม่ชัด ต่อให้มี CTA ก็ไม่ convert')
 
+    scores = {
+        'copy_strategist': {'hook': 6 if hook_score >= 2 else 4, 'clarity': 6, 'trust': 6, 'attention': 5, 'conversion': 5},
+        'visual_strategist': {'hook': 5, 'clarity': 6, 'trust': 6, 'attention': 5, 'conversion': 4},
+        'conversion_strategist': {'hook': 5, 'clarity': 6, 'trust': 6, 'attention': 5, 'conversion': 6},
+    }.get(specialist['id'], {'hook': 5, 'clarity': 5, 'trust': 5, 'attention': 5, 'conversion': 5})
     return {
         'specialist_id': specialist['id'],
         'specialist_label': specialist['label'],
@@ -178,7 +200,8 @@ def specialist_review(specialist, text):
         'weaknesses': weaknesses or ['ยังไม่มีจุดอ่อนร้ายแรง แต่ยังไม่คมพอ'],
         'key_risks': risks or ['เสี่ยงถูกเลื่อนผ่านถ้าไม่ sharpen opening'],
         'top_changes': changes or ['ทำ message ให้คมขึ้นอีกระดับ'],
-        'upgraded_direction': 'ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path'
+        'upgraded_direction': 'ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path',
+        'scores': scores,
     }
 
 
@@ -205,6 +228,16 @@ def lead_summary(persona_reviews, specialist_reviews, title='', target='general 
     biggest_problems = [x for x, _ in repeated_losses.most_common(6)]
     priority_fixes_now = [x for x, _ in repeated_changes.most_common(6)]
 
+    score_buckets = ['hook', 'clarity', 'trust', 'attention', 'conversion']
+    aggregate = {k: [] for k in score_buckets}
+    for r in persona_reviews:
+        for k, v in r.get('scores', {}).items():
+            aggregate[k].append(v)
+    for s in specialist_reviews:
+        for k, v in s.get('scores', {}).items():
+            aggregate[k].append(v)
+    aggregate_scores = {k: round(sum(v)/len(v), 1) if v else 0 for k, v in aggregate.items()}
+
     executive_summary = (
         f"Content '{title or 'Untitled'}' มีโครงที่พอพัฒนาได้ แต่ feedback แบบซ้ำชี้ว่าจุดที่ต้องแก้ก่อนคือช่วงเปิด, "
         f"ความชัดของ value, และวิธีทำให้คนรู้สึกว่า content นี้พูดกับเขาจริง ๆ สำหรับ target '{target}'."
@@ -230,5 +263,6 @@ def lead_summary(persona_reviews, specialist_reviews, title='', target='general 
             'ใช้โครงที่สั้นและอ่านง่ายขึ้น',
             'เพิ่ม trust signal เช่น example, proof point, or concrete detail',
             'ปิดด้วย CTA ที่ตรงกับ stage ของคนดู'
-        ]
+        ],
+        'aggregate_scores': aggregate_scores,
     }

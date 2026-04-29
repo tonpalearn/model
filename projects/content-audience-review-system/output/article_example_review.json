@@ -3,7 +3,17 @@
     "title": "AI for SME",
     "target": "Thai SME owners",
     "format": "article",
-    "source_file": "sample_input/article_example.md"
+    "source_file": "sample_input/article_example.md",
+    "preset": {
+      "description": "Long-form educational or thought-leadership content",
+      "evaluation_focus": [
+        "hook",
+        "clarity",
+        "structure",
+        "trust",
+        "usefulness"
+      ]
+    }
   },
   "persona_reviews": [
     {
@@ -44,7 +54,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 6,
+        "attention": 6,
+        "conversion": 7
+      }
     },
     {
       "persona_id": "founder_business_owner",
@@ -84,7 +101,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 6,
+        "attention": 8,
+        "conversion": 7
+      }
     },
     {
       "persona_id": "experienced_working_mother",
@@ -124,7 +148,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 8,
+        "attention": 8,
+        "conversion": 7
+      }
     },
     {
       "persona_id": "genz_fast_scroller",
@@ -165,7 +196,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 6,
+        "attention": 4,
+        "conversion": 7
+      }
     },
     {
       "persona_id": "skeptical_professional",
@@ -205,7 +243,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 6,
+        "attention": 6,
+        "conversion": 7
+      }
     },
     {
       "persona_id": "budget_conscious_consumer",
@@ -245,7 +290,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 6,
+        "attention": 6,
+        "conversion": 7
+      }
     },
     {
       "persona_id": "aspirational_lifestyle_seeker",
@@ -285,7 +337,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 6,
+        "attention": 6,
+        "conversion": 7
+      }
     },
     {
       "persona_id": "expert_analytical_reviewer",
@@ -325,7 +384,14 @@
         "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
       ],
       "detected_tone": "educational",
-      "content_type": "article"
+      "content_type": "article",
+      "scores": {
+        "hook": 3,
+        "clarity": 7,
+        "trust": 6,
+        "attention": 6,
+        "conversion": 7
+      }
     }
   ],
   "specialist_reviews": [
@@ -344,7 +410,14 @@
       "top_changes": [
         "เริ่มด้วย pain, tension หรือ promise ที่ชัดขึ้น"
       ],
-      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path"
+      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path",
+      "scores": {
+        "hook": 4,
+        "clarity": 6,
+        "trust": 6,
+        "attention": 5,
+        "conversion": 5
+      }
     },
     {
       "specialist_id": "visual_strategist",
@@ -363,7 +436,14 @@
         "เพิ่ม visual contrast และจุดพักสายตา",
         "ถ้าเป็นโพสต์ ให้คิด thumbnail / key visual แยกจาก body text"
       ],
-      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path"
+      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path",
+      "scores": {
+        "hook": 5,
+        "clarity": 6,
+        "trust": 6,
+        "attention": 5,
+        "conversion": 4
+      }
     },
     {
       "specialist_id": "conversion_strategist",
@@ -380,7 +460,14 @@
       "top_changes": [
         "ทำ message ให้คมขึ้นอีกระดับ"
       ],
-      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path"
+      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path",
+      "scores": {
+        "hook": 5,
+        "clarity": 6,
+        "trust": 6,
+        "attention": 5,
+        "conversion": 6
+      }
     }
   ],
   "lead_summary": {
@@ -441,6 +528,13 @@
       "ใช้โครงที่สั้นและอ่านง่ายขึ้น",
       "เพิ่ม trust signal เช่น example, proof point, or concrete detail",
       "ปิดด้วย CTA ที่ตรงกับ stage ของคนดู"
-    ]
+    ],
+    "aggregate_scores": {
+      "hook": 3.5,
+      "clarity": 6.7,
+      "trust": 6.2,
+      "attention": 5.9,
+      "conversion": 6.5
+    }
   }
 }

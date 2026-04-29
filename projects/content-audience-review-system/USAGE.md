@@ -30,10 +30,26 @@ The system generates:
 - Landing page copy review
 - Creative brief review
 
-## 6. What to improve later
+## 6. Presets available
+- article
+- social_post
+- ad_copy
+- landing_page
+- script
+- image_brief
+
+## 7. Scores included
+Each run now includes score signals across:
+- hook
+- clarity
+- trust
+- attention
+- conversion
+
+## 8. What to improve later
 If desired, this project can later be upgraded to:
 - true LLM-backed persona agents
 - image review support
 - multi-round debate between agents
-- scorecards and weighted personas
+- weighted persona boards
 - target-specific board presets (clinic, SME, B2B, wellness, AI page, etc.)
