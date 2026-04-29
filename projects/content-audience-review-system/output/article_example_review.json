@@ -1,0 +1,446 @@
+{
+  "meta": {
+    "title": "AI for SME",
+    "target": "Thai SME owners",
+    "format": "article",
+    "source_file": "sample_input/article_example.md"
+  },
+  "persona_reviews": [
+    {
+      "persona_id": "young_professional_woman",
+      "persona_label": "Young Professional Woman",
+      "background": {
+        "age": 28,
+        "gender": "female",
+        "occupation": "office worker"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "มีแกนเนื้อหาที่พอจับได้"
+      ],
+      "what_loses_attention": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ"
+      ],
+      "trust_level": "medium",
+      "likelihood_to_continue": "medium",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Young Professional Woman และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    },
+    {
+      "persona_id": "founder_business_owner",
+      "persona_label": "Founder / Business Owner Man",
+      "background": {
+        "age": 35,
+        "gender": "male",
+        "occupation": "small business owner"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "เริ่มเห็นประโยชน์เชิงผลลัพธ์ที่จับต้องได้"
+      ],
+      "what_loses_attention": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ"
+      ],
+      "trust_level": "medium",
+      "likelihood_to_continue": "high",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Founder / Business Owner Man และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    },
+    {
+      "persona_id": "experienced_working_mother",
+      "persona_label": "Experienced Working Mother",
+      "background": {
+        "age": 42,
+        "gender": "female",
+        "occupation": "manager and parent"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "มีสัญญาณความน่าเชื่อถือพอสมควร"
+      ],
+      "what_loses_attention": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ"
+      ],
+      "trust_level": "medium-high",
+      "likelihood_to_continue": "high",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Experienced Working Mother และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    },
+    {
+      "persona_id": "genz_fast_scroller",
+      "persona_label": "Gen Z Fast-Scroller",
+      "background": {
+        "age": 23,
+        "gender": "mixed",
+        "occupation": "junior creative / student"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "มีแกนเนื้อหาที่พอจับได้"
+      ],
+      "what_loses_attention": [
+        "ยังไม่หยุดนิ้วได้เร็วพอ"
+      ],
+      "trust_level": "medium",
+      "likelihood_to_continue": "low",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น",
+        "ทำ opening ให้ punchy, relatable, และ shareable มากขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Gen Z Fast-Scroller และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    },
+    {
+      "persona_id": "skeptical_professional",
+      "persona_label": "Skeptical Professional",
+      "background": {
+        "age": 31,
+        "gender": "mixed",
+        "occupation": "consultant / analyst"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "มีแกนเนื้อหาที่พอจับได้"
+      ],
+      "what_loses_attention": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ"
+      ],
+      "trust_level": "medium",
+      "likelihood_to_continue": "medium",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Skeptical Professional และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    },
+    {
+      "persona_id": "budget_conscious_consumer",
+      "persona_label": "Practical Budget-Conscious Consumer",
+      "background": {
+        "age": 37,
+        "gender": "mixed",
+        "occupation": "salaried employee"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "มีแกนเนื้อหาที่พอจับได้"
+      ],
+      "what_loses_attention": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ"
+      ],
+      "trust_level": "medium",
+      "likelihood_to_continue": "medium",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Practical Budget-Conscious Consumer และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    },
+    {
+      "persona_id": "aspirational_lifestyle_seeker",
+      "persona_label": "Aspirational Lifestyle Seeker",
+      "background": {
+        "age": 29,
+        "gender": "female",
+        "occupation": "marketing / lifestyle-oriented professional"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "มีแกนเนื้อหาที่พอจับได้"
+      ],
+      "what_loses_attention": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ"
+      ],
+      "trust_level": "medium",
+      "likelihood_to_continue": "medium",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Aspirational Lifestyle Seeker และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    },
+    {
+      "persona_id": "expert_analytical_reviewer",
+      "persona_label": "Expert / Analytical Reviewer",
+      "background": {
+        "age": 40,
+        "gender": "mixed",
+        "occupation": "subject-matter expert"
+      },
+      "first_impression": "ช่วงเปิดยังไม่ดึงพอสำหรับ persona นี้",
+      "emotional_reaction": "รู้สึกว่า content นี้ตั้งใจให้ความรู้หรือจัดกรอบความคิด",
+      "understood_value": "พอเข้าใจว่า content นี้พยายามจะสื่ออะไร",
+      "what_works": [
+        "มีแกนเนื้อหาที่พอจับได้"
+      ],
+      "what_loses_attention": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ"
+      ],
+      "trust_level": "medium",
+      "likelihood_to_continue": "medium",
+      "what_to_change_for_me": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น"
+      ],
+      "suggested_hook": "ลองเปิดด้วย pain ที่ชัดขึ้นสำหรับ Expert / Analytical Reviewer และเชื่อมไปยังประโยชน์หลักทันที",
+      "detected_terms": [
+        "ai",
+        "use",
+        "case",
+        "ไม่ได้มาแทนคนเก่ง",
+        "แต่มาแทนคนที่ยังทำงานแบบเดิมซ้ำ",
+        "โดยไม่ยอมปรับวิธีคิด",
+        "หลายธุรกิจยังใช้เวลาไปกับงานแอดมิน",
+        "งานตอบแชต",
+        "งานตามลูกค้า",
+        "และงานสรุปรายงาน",
+        "ทั้งที่จริงแล้ว",
+        "งานพวกนี้ควรมีระบบช่วยให้เบาลงได้แล้ว"
+      ],
+      "detected_tone": "educational",
+      "content_type": "article"
+    }
+  ],
+  "specialist_reviews": [
+    {
+      "specialist_id": "copy_strategist",
+      "specialist_label": "Copy Strategist",
+      "strengths": [
+        "สามารถพัฒนา narrative ให้ชัดได้จากโครงปัจจุบัน"
+      ],
+      "weaknesses": [
+        "Hook ยังไม่แรงพอ"
+      ],
+      "key_risks": [
+        "เสี่ยงถูกเลื่อนผ่านถ้าไม่ sharpen opening"
+      ],
+      "top_changes": [
+        "เริ่มด้วย pain, tension หรือ promise ที่ชัดขึ้น"
+      ],
+      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path"
+    },
+    {
+      "specialist_id": "visual_strategist",
+      "specialist_label": "Visual Strategist",
+      "strengths": [
+        "มีฐานให้พัฒนาต่อได้"
+      ],
+      "weaknesses": [
+        "ถ้ายังไม่มี visual hierarchy ชัด คนจะรับสารช้าลง"
+      ],
+      "key_risks": [
+        "เสี่ยงถูกเลื่อนผ่านถ้าไม่ sharpen opening"
+      ],
+      "top_changes": [
+        "ใช้ภาพที่สื่อผลลัพธ์หรือ pain ได้ทันที",
+        "เพิ่ม visual contrast และจุดพักสายตา",
+        "ถ้าเป็นโพสต์ ให้คิด thumbnail / key visual แยกจาก body text"
+      ],
+      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path"
+    },
+    {
+      "specialist_id": "conversion_strategist",
+      "specialist_label": "Conversion Strategist",
+      "strengths": [
+        "มี intent เชิง action อยู่แล้ว"
+      ],
+      "weaknesses": [
+        "ยังไม่มีจุดอ่อนร้ายแรง แต่ยังไม่คมพอ"
+      ],
+      "key_risks": [
+        "ถ้า value proposition ยังไม่ชัด ต่อให้มี CTA ก็ไม่ convert"
+      ],
+      "top_changes": [
+        "ทำ message ให้คมขึ้นอีกระดับ"
+      ],
+      "upgraded_direction": "ปรับให้คมขึ้นทั้ง hook, clarity, structure, และ action path"
+    }
+  ],
+  "lead_summary": {
+    "executive_summary": "Content 'AI for SME' มีโครงที่พอพัฒนาได้ แต่ feedback แบบซ้ำชี้ว่าจุดที่ต้องแก้ก่อนคือช่วงเปิด, ความชัดของ value, และวิธีทำให้คนรู้สึกว่า content นี้พูดกับเขาจริง ๆ สำหรับ target 'Thai SME owners'.",
+    "repeated_patterns": {
+      "strengths": [
+        "มีแกนเนื้อหาที่พอจับได้",
+        "เริ่มเห็นประโยชน์เชิงผลลัพธ์ที่จับต้องได้",
+        "มีสัญญาณความน่าเชื่อถือพอสมควร",
+        "สามารถพัฒนา narrative ให้ชัดได้จากโครงปัจจุบัน",
+        "มีฐานให้พัฒนาต่อได้"
+      ],
+      "problems": [
+        "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ",
+        "ยังไม่หยุดนิ้วได้เร็วพอ",
+        "Hook ยังไม่แรงพอ",
+        "ถ้ายังไม่มี visual hierarchy ชัด คนจะรับสารช้าลง",
+        "ยังไม่มีจุดอ่อนร้ายแรง แต่ยังไม่คมพอ"
+      ],
+      "changes": [
+        "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น",
+        "ทำ opening ให้ punchy, relatable, และ shareable มากขึ้น",
+        "เริ่มด้วย pain, tension หรือ promise ที่ชัดขึ้น",
+        "ใช้ภาพที่สื่อผลลัพธ์หรือ pain ได้ทันที",
+        "เพิ่ม visual contrast และจุดพักสายตา",
+        "ถ้าเป็นโพสต์ ให้คิด thumbnail / key visual แยกจาก body text"
+      ]
+    },
+    "strongest_assets": [
+      "มีแกนเนื้อหาที่พอจับได้",
+      "เริ่มเห็นประโยชน์เชิงผลลัพธ์ที่จับต้องได้",
+      "มีสัญญาณความน่าเชื่อถือพอสมควร",
+      "สามารถพัฒนา narrative ให้ชัดได้จากโครงปัจจุบัน",
+      "มีฐานให้พัฒนาต่อได้"
+    ],
+    "biggest_problems": [
+      "ยังไม่มีจุดหลุดแรงมาก แต่ยังไม่โดดเด่นพอ",
+      "ยังไม่หยุดนิ้วได้เร็วพอ",
+      "Hook ยังไม่แรงพอ",
+      "ถ้ายังไม่มี visual hierarchy ชัด คนจะรับสารช้าลง",
+      "ยังไม่มีจุดอ่อนร้ายแรง แต่ยังไม่คมพอ"
+    ],
+    "priority_fixes_now": [
+      "ปรับ hook 1-2 บรรทัดแรกให้แรงขึ้นและชัดขึ้น",
+      "ทำ opening ให้ punchy, relatable, และ shareable มากขึ้น",
+      "เริ่มด้วย pain, tension หรือ promise ที่ชัดขึ้น",
+      "ใช้ภาพที่สื่อผลลัพธ์หรือ pain ได้ทันที",
+      "เพิ่ม visual contrast และจุดพักสายตา",
+      "ถ้าเป็นโพสต์ ให้คิด thumbnail / key visual แยกจาก body text"
+    ],
+    "message_rewrite_direction": "ทำ message ให้ตอบ 3 เรื่องเร็วขึ้น: นี่พูดกับใคร, ได้อะไร, ทำไมต้องสนใจตอนนี้",
+    "format_rewrite_direction": "จัดเนื้อหาให้สั้นลง, แบ่งเป็นช่วงชัด, และมีจุดพักสายตาหรือ section framing ที่ดีขึ้น",
+    "visual_rewrite_direction": "ใช้ภาพที่สะท้อน pain หรือ desired outcome โดยตรง และทำ hierarchy ให้จับสารได้ในไม่กี่วินาที",
+    "CTA_rewrite_direction": "ทำ CTA ให้เฉพาะและเชื่อมตรงกับ intent ของคนดู เช่น อ่านต่อ, ทัก, สมัคร, เซฟ, แชร์",
+    "revised_content_brief": [
+      "เริ่มด้วย hook ที่สะท้อน pain หรือ tension ของ target โดยตรง",
+      "ตามด้วย value proposition ที่ชัดใน 1-2 บรรทัด",
+      "ใช้โครงที่สั้นและอ่านง่ายขึ้น",
+      "เพิ่ม trust signal เช่น example, proof point, or concrete detail",
+      "ปิดด้วย CTA ที่ตรงกับ stage ของคนดู"
+    ]
+  }
+}
