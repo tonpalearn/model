@@ -1,9 +1,9 @@
 # Demand-Supply Matching Summary
 
-- Demand records: 10
-- Supply records: 12
-- Candidate matches found: 16
-- Top matches exported: 16
+- Demand records: 18
+- Supply records: 27
+- Candidate matches found: 84
+- Top matches exported: 84
 
 ## Top 10 matches
 
@@ -42,6 +42,13 @@
 - Reason: shared keywords: electrolyte, gummies, nutraceutical, private-label, sugar-free | location: Thailand/SEA ↔ Thailand/SEA | quantity/MOQ: demand 5000 vs supply MOQ 3000 | confidence 0.60
 - Next action: Validate specs, confirm availability, then outreach both sides with tailored intro.
 
+### Buyer needs private label gummy supplement manufacturer ↔ Bioflex OEM gummies manufacturing supplier
+- Score: 0.6015
+- Demand: web_search | https://www.thomasnet.com/articles/top-suppliers/private-label-gummy-supplements-manufacturers-suppliers/
+- Supply: web_search | https://bioflexoem.com/pages/gummies-manufacturing
+- Reason: shared keywords: gummy, label, manufacturing, nutraceutical, private, private-label | location: Global ↔ Global | confidence 0.60
+- Next action: Validate specs, confirm availability, then outreach both sides with tailored intro.
+
 ### Seeking TikTok short video production partner ↔ TikTok UGC and short-form video studio
 - Score: 0.5875
 - Demand: web_search | https://example.com/demand/tiktok-video
@@ -56,23 +63,16 @@
 - Reason: shared keywords: fda, glove, gloves, medical-supplies, nitrile | location: EU/Global ↔ Malaysia/Global | quantity/MOQ: demand 100000 vs supply MOQ 50000 | confidence 0.59
 - Next action: Validate specs, confirm availability, then outreach both sides with tailored intro.
 
+### Buyer sourcing disposable nitrile gloves with OEM options ↔ Bornova Medical OEM gloves supplier
+- Score: 0.5813
+- Demand: web_search | https://bornovamedical.com/pages/oem-gloves-1
+- Supply: web_search | https://bornovamedical.com/pages/oem-gloves-1
+- Reason: shared keywords: disposable, gloves, medical-supplies, nitrile, oem, ppe | location: Global ↔ Global | confidence 0.58
+- Next action: Validate specs, confirm availability, then outreach both sides with tailored intro.
+
 ### Need AI chatbot agency for clinic leads ↔ Healthcare AI chatbot implementation agency
 - Score: 0.5658
 - Demand: web_search | https://example.com/demand/ai-chatbot-clinic
 - Supply: web_search | https://example.com/supply/clinic-chatbot
 - Reason: shared keywords: agency, ai-services, chatbot, clinic | location: Thailand ↔ Thailand | quantity/MOQ: demand 1 vs supply MOQ 1 | confidence 0.57
-- Next action: Validate specs, confirm availability, then outreach both sides with tailored intro.
-
-### Sourcing collagen stick pack manufacturer ↔ Collagen peptide stick pack OEM
-- Score: 0.5637
-- Demand: web_search | https://example.com/demand/collagen-stickpack
-- Supply: web_search | https://example.com/supply/collagen-oem
-- Reason: shared keywords: collagen, nutraceutical, oem, pack, peptide, stick | location: Singapore/SEA ↔ Vietnam/SEA | quantity/MOQ: demand 10000 vs supply MOQ 5000 | confidence 0.56
-- Next action: Validate specs, confirm availability, then outreach both sides with tailored intro.
-
-### Looking for private label electrolyte gummies ↔ Private label gummy vitamin factory
-- Score: 0.4733
-- Demand: web_search | https://example.com/demand/electrolyte-gummies
-- Supply: web_search | https://example.com/supply/gummy-factory
-- Reason: shared keywords: ecommerce, gummies, label, nutraceutical, private, private-label | location: Thailand/SEA ↔ China/Global | quantity/MOQ: demand 5000 vs supply MOQ 5000 | confidence 0.47
 - Next action: Validate specs, confirm availability, then outreach both sides with tailored intro.

@@ -11,6 +11,8 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 DEMAND_FILE = DATA / 'demand.csv'
 SUPPLY_FILE = DATA / 'supply.csv'
+REAL_DEMAND_FILE = DATA / 'real_demand.csv'
+REAL_SUPPLY_FILE = DATA / 'real_supply.csv'
 MATCH_FILE = OUT / 'matches.csv'
 SUMMARY_FILE = OUT / 'summary.md'
 
@@ -29,6 +31,14 @@ def tokenize(text: str):
 def load_csv(path: Path):
     with path.open(newline='', encoding='utf-8') as f:
         return list(csv.DictReader(f))
+
+
+def load_all(paths):
+    rows = []
+    for path in paths:
+        if path.exists():
+            rows.extend(load_csv(path))
+    return rows
 
 
 def overlap_score(a, b):
@@ -84,8 +94,8 @@ def make_reason(tokens_d, tokens_s, demand, supply, score):
 
 
 def main():
-    demands = load_csv(DEMAND_FILE)
-    supplies = load_csv(SUPPLY_FILE)
+    demands = load_all([DEMAND_FILE, REAL_DEMAND_FILE])
+    supplies = load_all([SUPPLY_FILE, REAL_SUPPLY_FILE])
     matches = []
     for demand in demands:
         td = tokenize(' '.join([demand.get('title',''), demand.get('description',''), demand.get('category','')]))
