@@ -3,75 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TONPALEARN | 10 ล้านบาทใน 1 ปี</title>
+  <title>TONPALEARN | Model Growth Plan</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
     :root {
-      --bg: #f5f7fb;
-      --bg2: #eef3f8;
-      --card: rgba(255,255,255,.9);
-      --line: rgba(15,23,42,.08);
-      --text: #0f172a;
-      --muted: #64748b;
-      --blue: #2563eb;
-      --blue-soft: #dbeafe;
-      --green: #059669;
-      --green-soft: #d1fae5;
-      --gold: #b45309;
-      --gold-soft: #fef3c7;
-      --shadow: 0 24px 70px rgba(15,23,42,.08);
-      --radius: 24px;
+      --color-primary: #78716c;
+      --color-secondary: #92400e;
+      --color-accent: #d97706;
+      --color-background: #fffbeb;
+      --color-surface: rgba(255,255,255,0.92);
+      --color-surface-strong: #ffffff;
+      --color-foreground: #0f172a;
+      --color-muted: #64748b;
+      --color-border: #eeeded;
+      --color-success: #059669;
+      --color-success-soft: #d1fae5;
+      --color-accent-soft: #fef3c7;
+      --color-primary-soft: #f3f0ee;
+      --shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
     }
+
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
+      font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+      color: var(--color-foreground);
       background:
-        radial-gradient(circle at top right, rgba(37,99,235,.08), transparent 24%),
-        radial-gradient(circle at top left, rgba(5,150,105,.08), transparent 26%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+        radial-gradient(circle at top right, rgba(217,119,6,0.10), transparent 24%),
+        radial-gradient(circle at top left, rgba(120,113,108,0.10), transparent 28%),
+        linear-gradient(180deg, #fffdf7 0%, var(--color-background) 100%);
     }
+    h1, h2, h3, h4 { font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif; margin-top: 0; }
+    p { margin-top: 0; }
+    a { color: inherit; text-decoration: none; }
     .wrap { max-width: 1380px; margin: 0 auto; padding: 28px 20px 80px; }
     .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
       padding: 24px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
     }
     .hero {
       display: grid;
-      grid-template-columns: 1.25fr .75fr;
+      grid-template-columns: 1.2fr .8fr;
       gap: 20px;
       margin-bottom: 20px;
     }
     .eyebrow {
       display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: var(--blue-soft);
-      color: var(--blue);
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 14px;
     }
-    h1,h2,h3,p { margin-top: 0; }
-    h1 { font-size: 44px; line-height: 1.05; margin-bottom: 16px; }
-    .lead { font-size: 18px; line-height: 1.75; color: #1e293b; }
-    .muted { color: var(--muted); }
-    .chips, .cta, .meta { display: flex; flex-wrap: wrap; gap: 10px; }
+    h1 { font-size: 46px; line-height: 1.05; margin-bottom: 16px; }
+    .lead { font-size: 18px; line-height: 1.78; color: #1f2937; }
+    .muted { color: var(--color-muted); }
+    .chip-row, .cta-row, .meta-row { display: flex; flex-wrap: wrap; gap: 10px; }
     .chip, .tag {
       padding: 9px 13px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
       background: #fff;
-      border: 1px solid rgba(37,99,235,.12);
-      color: #1e3a8a;
+      border: 1px solid rgba(120,113,108,.14);
+      color: var(--color-primary);
     }
-    .tag.green { background: var(--green-soft); color: var(--green); border-color: rgba(5,150,105,.12); }
-    .tag.gold { background: var(--gold-soft); color: var(--gold); border-color: rgba(180,83,9,.12); }
+    .tag.accent { background: var(--color-accent-soft); color: var(--color-secondary); }
+    .tag.success { background: var(--color-success-soft); color: var(--color-success); }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -79,74 +89,98 @@
       padding: 14px 18px;
       border-radius: 16px;
       font-weight: 700;
-      text-decoration: none;
       border: 1px solid transparent;
+      transition: all .2s ease;
+      cursor: pointer;
     }
-    .btn.primary { background: var(--blue); color: #fff; }
-    .btn.secondary { background: #fff; color: var(--text); border-color: var(--line); }
-    .kpis, .grid-2, .grid-3, .grid-4, .offer-grid, .phase-grid { display: grid; gap: 16px; }
+    .btn.primary { background: var(--color-accent); color: #fff; }
+    .btn.primary:hover { background: #b45309; }
+    .btn.secondary { background: #fff; color: var(--color-foreground); border-color: var(--color-border); }
+    .btn.secondary:hover { border-color: rgba(217,119,6,.24); color: var(--color-secondary); }
+    .kpis, .grid-2, .grid-3, .grid-4, .phase-grid, .offer-grid { display: grid; gap: 16px; }
     .kpis { grid-template-columns: repeat(4, minmax(0,1fr)); margin-top: 18px; }
     .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
     .grid-4, .phase-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
     .offer-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .box {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.96);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.97);
       padding: 18px;
     }
-    .kpi .label { font-size: 12px; color: var(--muted); }
-    .kpi .value { margin-top: 10px; font-size: 28px; font-weight: 800; }
-    .layout { display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+    .kpi {
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-accent), transparent);
+      opacity: .75;
+    }
+    .kpi .label { font-size: 12px; color: var(--color-muted); }
+    .kpi .value { margin-top: 10px; font-size: 28px; font-weight: 800; font-family: 'Poppins', sans-serif; }
+    .layout { display: grid; grid-template-columns: 310px 1fr; gap: 20px; }
     .nav button {
       width: 100%;
       text-align: left;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.85);
+      border: 1px solid var(--color-border);
+      background: rgba(255,255,255,.88);
       border-radius: 16px;
       padding: 14px 16px;
       margin-bottom: 10px;
       cursor: pointer;
       font-weight: 700;
-      color: var(--text);
+      color: var(--color-foreground);
+      transition: all .2s ease;
     }
     .nav button.active, .nav button:hover {
-      background: var(--blue-soft);
-      color: var(--blue);
-      border-color: rgba(37,99,235,.18);
+      background: var(--color-primary-soft);
+      color: var(--color-secondary);
+      border-color: rgba(146,64,14,.18);
     }
     .section { display: none; }
     .section.active { display: block; }
     .highlight {
       margin-top: 16px;
       padding: 18px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
-      border: 1px solid rgba(37,99,235,.12);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+      border: 1px solid rgba(217,119,6,.14);
     }
     .table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 14px;
-      background: rgba(255,255,255,.96);
+      background: rgba(255,255,255,.98);
       border-radius: 18px;
       overflow: hidden;
     }
     .table th, .table td {
       padding: 14px 12px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--color-border);
       text-align: left;
       vertical-align: top;
       font-size: 14px;
     }
-    .table th { background: #eff6ff; color: #1d4ed8; font-weight: 800; }
+    .table th {
+      background: #fef3c7;
+      color: var(--color-secondary);
+      font-weight: 800;
+    }
     .table tr:last-child td { border-bottom: none; }
     ul { margin: 0; padding-left: 18px; line-height: 1.7; }
-    .footer { margin-top: 24px; color: var(--muted); font-size: 13px; }
+    .footer { margin-top: 24px; color: var(--color-muted); font-size: 13px; }
+    @media (prefers-reduced-motion: no-preference) {
+      .card, .box, .nav button, .btn { transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+      .box:hover, .kpi:hover { transform: translateY(-2px); }
+    }
     @media (max-width: 1120px) {
-      .hero, .layout, .kpis, .grid-2, .grid-3, .grid-4, .offer-grid, .phase-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 34px; }
+      .hero, .layout, .kpis, .grid-2, .grid-3, .grid-4, .phase-grid, .offer-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 36px; }
     }
   </style>
 </head>
@@ -154,37 +188,37 @@
   <div class="wrap">
     <div class="hero">
       <div class="card">
-        <div class="eyebrow">TONPALEARN · Revenue Strategy</div>
-        <h1>แผนไป 10 ล้านบาทใน 1 ปี จากสิ่งที่ต้นทำอยู่ตอนนี้</h1>
-        <p class="lead">เป้าหมายนี้ไปได้ ถ้าต้นเลิกมองตัวเองเป็นแค่คนสอน AI แล้วขยับเป็นธุรกิจแบบ <strong>training + consulting + implementation + scalable product</strong> โดยใช้ corporate training เป็นเครื่องยนต์รายได้หลัก และใช้ consulting เป็นตัวดัน ticket size</p>
-        <div class="chips">
+        <div class="eyebrow">TONPALEARN · Trust & Authority Design System</div>
+        <h1>แผนไป 10 ล้านบาทใน 1 ปี แบบที่อ่านง่าย ตัดสินใจง่าย และเอาไปลงมือได้จริง</h1>
+        <p class="lead">หน้ารุ่นนี้ถูกปรับด้วยแนวคิดจาก <strong>ui-ux-pro-max</strong> โดยใช้โครงแบบ Trust & Authority, โทน corporate อบอุ่น และ pattern แบบ operations landing เพื่อให้แผนธุรกิจดูน่าเชื่อถือขึ้น ไม่ใช่แค่สวย แต่พร้อมใช้เป็นหน้าคิดงานและหน้าคุยกลยุทธ์</p>
+        <div class="chip-row">
           <div class="chip">Target 10,000,000 / year</div>
           <div class="chip">833,333 / month</div>
           <div class="chip">Corporate-led model</div>
-          <div class="chip">High-margin small company</div>
+          <div class="chip">Consulting + Product leverage</div>
         </div>
-        <div class="cta" style="margin-top:16px;">
+        <div class="cta-row" style="margin-top:16px;">
           <a class="btn primary" href="#roadmap">ดู roadmap 12 เดือน</a>
           <a class="btn secondary" href="#revenue">ดู revenue mix</a>
         </div>
         <div class="kpis">
           <div class="card kpi"><div class="label">Monthly Goal</div><div class="value">833k</div></div>
-          <div class="card kpi"><div class="label">Primary Engine</div><div class="value">B2B</div></div>
+          <div class="card kpi"><div class="label">Primary Engine</div><div class="value">Corporate</div></div>
           <div class="card kpi"><div class="label">High-margin Layer</div><div class="value">Consulting</div></div>
           <div class="card kpi"><div class="label">Scale Layer</div><div class="value">Product</div></div>
         </div>
       </div>
       <div class="card">
-        <h3>Strategic Summary</h3>
+        <h3>Design Direction จาก Skill</h3>
         <ul>
-          <li>ห้ามพึ่ง 1:1 เป็นแกนหลัก</li>
-          <li>ใช้ corporate training เป็น revenue engine</li>
-          <li>ต่อยอดจาก training ไป consult และ implementation</li>
-          <li>ทำ product ที่ขายซ้ำได้เพื่อเพิ่ม leverage</li>
+          <li>Pattern: Real-Time / Operations Landing</li>
+          <li>Style: Trust & Authority</li>
+          <li>Colors: warm neutral + amber CTA</li>
+          <li>Typography: Poppins + Open Sans</li>
         </ul>
         <div class="highlight">
-          <strong>Positioning ที่ควรใช้:</strong><br/>
-          AI Trainer + Consultant + Implementation Partner
+          <strong>สิ่งที่ควรหลีกเลี่ยง:</strong><br/>
+          playful เกินไป, gradient ม่วงชมพูแบบ AI ทั่วไป, และหน้าเว็บที่ไม่มี trust signals ชัดพอ
         </div>
       </div>
     </div>
@@ -203,16 +237,18 @@
           <h2>Executive Summary</h2>
           <div class="grid-2">
             <div class="box">
-              <h3>สถานะของต้นตอนนี้</h3>
+              <div class="meta-row"><span class="tag success">What exists now</span></div>
+              <h3>ฐานที่ต้นมีอยู่แล้ว</h3>
               <ul>
                 <li>มีความรู้จริง ทั้งสอน, consult, และทำ solution</li>
-                <li>มีหลายคอร์สพอจะสร้าง product ladder ได้</li>
-                <li>เหมาะกับตลาด non-tech, owner, SME, corporate</li>
+                <li>มีหลายคอร์สพอจะทำ product ladder ได้</li>
+                <li>เหมาะกับตลาด owner, SME, non-tech, corporate</li>
                 <li>มีโอกาสขยับจาก “สอน” ไป “วางระบบ”</li>
               </ul>
             </div>
             <div class="box">
-              <h3>สิ่งที่ต้องเปลี่ยน</h3>
+              <div class="meta-row"><span class="tag accent">What must change</span></div>
+              <h3>สิ่งที่ต้องเปลี่ยนทันที</h3>
               <ul>
                 <li>เลิกขายเวลาเป็นหลัก</li>
                 <li>เลิก custom ทุกงานจนส่งมอบซ้ำไม่ได้</li>
@@ -222,7 +258,7 @@
             </div>
           </div>
           <div class="highlight">
-            <strong>ข้อสรุป:</strong> ถ้าต้นยังเป็น trainer อย่างเดียว เป้า 10 ล้านจะเหนื่อยมาก แต่ถ้าขยับเป็น AI business enablement company ขนาดเล็ก เป้านี้มีทางเป็นไปได้จริง
+            <strong>ข้อสรุปเชิงกลยุทธ์:</strong> ถ้าต้นยังอยู่ในโหมด trainer อย่างเดียว เป้า 10 ล้านจะเหนื่อยมาก แต่ถ้าขยับเป็น AI Trainer + Consultant + Implementation Partner เป้านี้มีทางไปได้จริง
           </div>
         </div>
 
@@ -244,7 +280,7 @@
             </tbody>
           </table>
           <div class="highlight">
-            <strong>ภาพรวม:</strong> รายได้รวมเป้าควรอยู่ประมาณ 830,000 ถึง 870,000 บาทต่อเดือน เพื่อให้แตะ 10 ล้านภายใน 12 เดือนได้แบบมี buffer
+            <strong>ภาพรวม:</strong> เป้ารายได้ควรอยู่ราว 830,000 ถึง 870,000 บาทต่อเดือน เพื่อให้แตะ 10 ล้านต่อปีแบบมี buffer ไม่ต้องลุ้นทุกเดือน
           </div>
         </div>
 
@@ -252,7 +288,7 @@
           <h2>4 Growth Engines</h2>
           <div class="grid-2">
             <div class="box">
-              <div class="meta"><span class="tag green">Engine 1</span></div>
+              <div class="meta-row"><span class="tag success">Engine 1</span></div>
               <h3>Corporate Training</h3>
               <p>ขาย workshop, bootcamp, executive session, AI adoption workshop ให้ SME และองค์กร non-tech</p>
               <ul>
@@ -262,7 +298,7 @@
               </ul>
             </div>
             <div class="box">
-              <div class="meta"><span class="tag gold">Engine 2</span></div>
+              <div class="meta-row"><span class="tag accent">Engine 2</span></div>
               <h3>Consulting + Implementation</h3>
               <p>ต่อยอดจาก training ไปสู่ audit, roadmap, setup, sprint และ retainer</p>
               <ul>
@@ -272,7 +308,7 @@
               </ul>
             </div>
             <div class="box">
-              <div class="meta"><span class="tag">Engine 3</span></div>
+              <div class="meta-row"><span class="tag">Engine 3</span></div>
               <h3>B2C / Group / Bootcamp</h3>
               <p>เป็น cashflow เร็ว, ทำ testimonial, และเป็นทางเข้าให้ลูกค้าใหม่</p>
               <ul>
@@ -282,7 +318,7 @@
               </ul>
             </div>
             <div class="box">
-              <div class="meta"><span class="tag">Engine 4</span></div>
+              <div class="meta-row"><span class="tag">Engine 4</span></div>
               <h3>Digital Product</h3>
               <p>Recorded course, prompt pack, template pack, playbook, community</p>
               <ul>
@@ -354,7 +390,7 @@
       </div>
     </div>
 
-    <div class="footer">TONPALEARN · 10M plan dashboard. Designed for quick executive reading and decision-making.</div>
+    <div class="footer">Refined with UI UX Pro Max design guidance for trust, readability, and executive clarity.</div>
   </div>
 
   <script>
