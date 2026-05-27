@@ -1,8 +1,0 @@
-{
-  "demands": 18,
-  "supplies": 27,
-  "matches_total": 86,
-  "matches_exported": 50,
-  "csv": "/Users/ckawin/.openclaw/workspace/projects/demand-supply-matcher/output/dsmatch_50_matches.csv",
-  "xlsx": "/Users/ckawin/.openclaw/workspace/projects/demand-supply-matcher/output/dsmatch_50_matches.xlsx"
-}

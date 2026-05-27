@@ -1,0 +1,7 @@
+*
+!index.html
+!vercel.json
+!README.md
+!web/
+!web/model-plan/
+!web/model-plan/**
