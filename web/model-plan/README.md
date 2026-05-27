@@ -1,6 +1,6 @@
 # Model Plan Web
 
-Static interactive HTML plan for Vercel deployment.
+Premium interactive HTML dashboard for Vercel deployment.
 
 ## Deploy
 - Import this repo into Vercel
@@ -10,6 +10,15 @@ Static interactive HTML plan for Vercel deployment.
 - Output directory: `.`
 
 ## Current scope
-- Interactive business plan overview
-- Revenue simulator
-- Ready to extend with pricing, costs, margin, and scenario modeling
+- Business model overview
+- Pricing plan
+- Cost plan
+- Margin view
+- 12-month plan
+- Scenario simulator with revenue, cost, and profit projection
+
+## Next expansion ideas
+- Live charts with Chart.js or ECharts
+- Notion or JSON-backed editable data
+- Offer-specific unit economics
+- Pipeline tracker and CRM view
