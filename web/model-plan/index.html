@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Business Scale Plan</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(17, 24, 39, 0.72);
+      --panel-strong: #111827;
+      --line: rgba(255,255,255,0.08);
+      --text: #eef2ff;
+      --muted: #9ca3af;
+      --accent: #60a5fa;
+      --accent-2: #34d399;
+      --warn: #f59e0b;
+      --danger: #fb7185;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #172554 0%, var(--bg) 48%);
+      color: var(--text);
+    }
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 24px;
+    }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { font-size: 40px; line-height: 1.05; margin-bottom: 16px; }
+    .lead { color: #dbeafe; font-size: 18px; line-height: 1.7; }
+    .muted { color: var(--muted); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(96,165,250,0.28);
+      color: #bfdbfe;
+      background: rgba(96,165,250,0.12);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .kpi {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .kpi .label { color: var(--muted); font-size: 13px; }
+    .kpi .value { font-size: 28px; font-weight: 700; margin-top: 8px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 20px;
+      margin-top: 22px;
+    }
+    .nav button, .chip {
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 14px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+      margin-bottom: 10px;
+    }
+    .nav button.active, .nav button:hover {
+      border-color: rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.14);
+    }
+    .section { display: none; }
+    .section.active { display: block; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 22px; }
+    .chip { width: auto; cursor: default; margin: 0; color: #d1fae5; border-color: rgba(52,211,153,.22); background: rgba(52,211,153,.1); }
+    .cards-2, .cards-3, .timeline {
+      display: grid;
+      gap: 16px;
+    }
+    .cards-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .cards-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .mini {
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .mini h3 { margin-bottom: 10px; font-size: 18px; }
+    ul { margin: 0; padding-left: 18px; line-height: 1.7; }
+    .timeline { grid-template-columns: repeat(5, minmax(0,1fr)); margin-top: 18px; }
+    .phase {
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .phase .step { color: #93c5fd; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .phase .money { color: var(--accent-2); font-weight: 700; margin-top: 10px; }
+    .range {
+      width: 100%;
+      margin-top: 8px;
+    }
+    .calc {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+    label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    input[type="number"] {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 15px;
+    }
+    .result {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(96,165,250,0.12);
+      border: 1px solid rgba(96,165,250,0.18);
+    }
+    .note {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+    .footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 1024px) {
+      .hero, .grid, .cards-2, .cards-3, .timeline, .calc { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="card">
+        <div class="badge">Interactive plan, Vercel-ready, เติมราคาและ cost ภายหลังได้</div>
+        <h1>AI Business Scale Plan</h1>
+        <p class="lead">แผนหลักสำหรับขยับธุรกิจ AI ของต้นจากการขายเวลาและงาน 1:1 ไปสู่ธุรกิจที่แตะ <strong>10 ล้านบาทต่อปี</strong> ผ่าน 4 revenue engines คือ B2C premium, corporate training, consulting/implementation และ scalable products</p>
+        <div class="pill-row">
+          <div class="chip">เป้ารายได้ 10,000,000 บาท/ปี</div>
+          <div class="chip">เฉลี่ย 833,333 บาท/เดือน</div>
+          <div class="chip">พร้อมต่อยอดเป็น price plan + cost dashboard</div>
+        </div>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">Revenue Target</div>
+            <div class="value">10M THB</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Monthly Run Rate</div>
+            <div class="value">833K THB</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Core Engines</div>
+            <div class="value">4 เสา</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Priority Move</div>
+            <div class="value">B2B + Productize</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Snapshot</h2>
+        <div class="mini">
+          <h3>สถานะตอนนี้</h3>
+          <ul>
+            <li>รายได้หลักมาจาก Fastwork และงานสอน</li>
+            <li>ขายชั่วโมงได้ แต่ scale จำกัด</li>
+            <li>มีโอกาสต่อยอดเป็น consult และ implementation</li>
+          </ul>
+        </div>
+        <div class="mini" style="margin-top: 12px;">
+          <h3>Strategic shift</h3>
+          <ul>
+            <li>จาก “คนสอน AI” → “AI business enablement partner”</li>
+            <li>ขาย outcome แทนการขายเวลา</li>
+            <li>มี packaged offers และ recurring revenue</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card nav">
+        <button class="active" data-target="business">Business Model</button>
+        <button data-target="revenue">Revenue Model</button>
+        <button data-target="timeline">12-Month Plan</button>
+        <button data-target="actions">Next Actions</button>
+        <button data-target="simulator">Revenue Simulator</button>
+      </div>
+
+      <div>
+        <div id="business" class="card section active">
+          <h2>Business Model</h2>
+          <p class="muted">ใช้ 4 เสารายได้ เพื่อให้ธุรกิจโตโดยไม่ผูกกับชั่วโมงของต้นเพียงอย่างเดียว</p>
+          <div class="cards-2">
+            <div class="mini"><h3>เสา A, B2C Premium</h3><ul><li>1:1 coaching</li><li>small group intensive</li><li>AI for work bootcamp</li><li>ใช้เป็น cashflow และ lead source</li></ul></div>
+            <div class="mini"><h3>เสา B, B2B Corporate Training</h3><ul><li>AI for executives</li><li>AI for sales / marketing / operations</li><li>AI adoption workshop</li><li>เป็น revenue engine ก้อนใหญ่</li></ul></div>
+            <div class="mini"><h3>เสา C, Consulting + Implementation</h3><ul><li>AI workflow audit</li><li>AI roadmap</li><li>internal prompt / agent setup</li><li>ต่อยอดจาก training ไปสู่ implementation</li></ul></div>
+            <div class="mini"><h3>เสา D, Scalable Product</h3><ul><li>recorded course</li><li>prompt pack / template pack</li><li>membership</li><li>ลดการพึ่งเวลาและเพิ่ม recurring</li></ul></div>
+          </div>
+          <div class="result">
+            <strong>Positioning ที่แนะนำ:</strong><br/>
+            ช่วยคนทำงานและองค์กรใช้ AI ให้เกิด productivity, ยอดขาย, และการทำงานจริง ไม่ใช่แค่เรียนแล้วจบ
+          </div>
+        </div>
+
+        <div id="revenue" class="card section">
+          <h2>Revenue Model</h2>
+          <p class="muted">โครงรายได้ที่ทำให้เป้า 10 ล้านต่อปีเป็นไปได้จริงกว่าโมเดลขายชั่วโมงล้วน</p>
+          <div class="cards-3">
+            <div class="mini"><h3>B2C</h3><ul><li>1:1 online 2 ชม. = 3,500 ถึง 5,000</li><li>1:1 intensive 4 ชม. = 6,000 ถึง 9,000</li><li>small group = 1,490 ถึง 3,990 / คน</li></ul></div>
+            <div class="mini"><h3>B2B Training</h3><ul><li>2 ชั่วโมง = 15,000 ถึง 30,000</li><li>half-day = 30,000 ถึง 60,000</li><li>full-day = 60,000 ถึง 120,000+</li></ul></div>
+            <div class="mini"><h3>Consulting / Product</h3><ul><li>AI audit = 25,000 ถึง 60,000</li><li>30-day sprint = 60,000 ถึง 150,000</li><li>digital product = 490 ถึง 7,900</li></ul></div>
+          </div>
+          <div class="result">
+            <strong>Balanced target mix ต่อเดือน</strong><br/>
+            B2C 100K + Corporate 400K + Consulting 250K + Product 80K ≈ 830K / เดือน
+          </div>
+        </div>
+
+        <div id="timeline" class="card section">
+          <h2>12-Month Plan</h2>
+          <p class="muted">แผนขยายแบบเป็น phase เพื่อไม่ให้ทำทุกอย่างพร้อมกัน</p>
+          <div class="timeline">
+            <div class="phase"><div class="step">Phase 1</div><h3>Foundation</h3><p>เดือน 1-2, จัด positioning, offers, sales assets</p><div class="money">Target: 3-5 ดีลแรก</div></div>
+            <div class="phase"><div class="step">Phase 2</div><h3>Validation</h3><p>เดือน 3-4, ทดสอบ offer และราคา, เก็บ case study</p><div class="money">Target: workshop 4-6 งาน/เดือน</div></div>
+            <div class="phase"><div class="step">Phase 3</div><h3>Scale Offers</h3><p>เดือน 5-7, เปิด cohort, product, partner strategy</p><div class="money">Target: 400K-700K/เดือน</div></div>
+            <div class="phase"><div class="step">Phase 4</div><h3>Systemize</h3><p>เดือน 8-10, ทำ SOP, assets, delegate งานบางส่วน</p><div class="money">Target: รายได้โตโดยไม่กินเวลาตรงเพิ่มมาก</div></div>
+            <div class="phase"><div class="step">Phase 5</div><h3>Acceleration</h3><p>เดือน 11-12, bundle offer, annual retainer, strategic partners</p><div class="money">Target: 800K+/เดือน</div></div>
+          </div>
+        </div>
+
+        <div id="actions" class="card section">
+          <h2>Next Actions, 30 วันแรก</h2>
+          <div class="cards-2">
+            <div class="mini"><h3>Offers</h3><ul><li>1:1 AI Coaching</li><li>AI for Teams Workshop</li><li>AI Adoption Sprint</li><li>Prompt / Workflow Setup</li></ul></div>
+            <div class="mini"><h3>Sales Assets</h3><ul><li>profile 1 หน้า</li><li>deck 10 หน้า</li><li>case studies 3 ชิ้น</li><li>proposal template</li></ul></div>
+            <div class="mini"><h3>Lead Pipeline</h3><ul><li>Fastwork</li><li>referral</li><li>outbound</li><li>community / social</li></ul></div>
+            <div class="mini"><h3>Weekly KPI</h3><ul><li>outreach 30 ราย/สัปดาห์</li><li>sales calls 5 ครั้ง/สัปดาห์</li><li>content 2 ชิ้น/สัปดาห์</li><li>proposal 3 ฉบับ/สัปดาห์</li></ul></div>
+          </div>
+        </div>
+
+        <div id="simulator" class="card section">
+          <h2>Revenue Simulator</h2>
+          <p class="muted">หน้า prototype นี้เปิดให้เราจำลองรายได้ก่อน เดี๋ยวค่อยใส่ price plan และ cost structure จริงในรอบถัดไป</p>
+          <div class="calc">
+            <div>
+              <label for="corporateDeals">Corporate deals / month</label>
+              <input id="corporateDeals" type="number" value="4" min="0" />
+            </div>
+            <div>
+              <label for="corporateTicket">Avg corporate ticket (THB)</label>
+              <input id="corporateTicket" type="number" value="60000" min="0" />
+            </div>
+            <div>
+              <label for="consultDeals">Consulting deals / month</label>
+              <input id="consultDeals" type="number" value="2" min="0" />
+            </div>
+            <div>
+              <label for="consultTicket">Avg consulting ticket (THB)</label>
+              <input id="consultTicket" type="number" value="100000" min="0" />
+            </div>
+            <div>
+              <label for="b2cRevenue">B2C monthly revenue (THB)</label>
+              <input id="b2cRevenue" type="number" value="120000" min="0" />
+            </div>
+            <div>
+              <label for="productRevenue">Product monthly revenue (THB)</label>
+              <input id="productRevenue" type="number" value="80000" min="0" />
+            </div>
+          </div>
+          <div class="result" id="simResult"></div>
+          <p class="note">รอบถัดไปผมสามารถต่อส่วนนี้ให้มี cost, margin, runway, และ scenario compare ได้เลย เมื่อได้ตัวเลขจากต้น</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Built for quick iteration and Vercel deployment. Repo can be extended into React/Next.js later if needed.</div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.nav button');
+    const sections = document.querySelectorAll('.section');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    const ids = ['corporateDeals','corporateTicket','consultDeals','consultTicket','b2cRevenue','productRevenue'];
+    const fields = ids.map(id => document.getElementById(id));
+    const result = document.getElementById('simResult');
+
+    function formatTHB(n) {
+      return new Intl.NumberFormat('th-TH').format(Math.round(n));
+    }
+
+    function recalc() {
+      const values = Object.fromEntries(fields.map(f => [f.id, Number(f.value || 0)]));
+      const monthly = values.corporateDeals * values.corporateTicket + values.consultDeals * values.consultTicket + values.b2cRevenue + values.productRevenue;
+      const annual = monthly * 12;
+      const gap = 10000000 - annual;
+      const status = gap <= 0
+        ? `<span style="color:#86efac">เกินเป้าแล้วประมาณ ${formatTHB(Math.abs(gap))} บาท/ปี</span>`
+        : `<span style="color:#fcd34d">ยังขาดอีกประมาณ ${formatTHB(gap)} บาท/ปี</span>`;
+      result.innerHTML = `
+        <strong>Projected Monthly Revenue:</strong> ${formatTHB(monthly)} บาท<br/>
+        <strong>Projected Annual Revenue:</strong> ${formatTHB(annual)} บาท<br/>
+        <strong>Status:</strong> ${status}
+      `;
+    }
+
+    fields.forEach(f => f.addEventListener('input', recalc));
+    recalc();
+  </script>
+</body>
+</html>
